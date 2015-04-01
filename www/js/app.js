@@ -27,7 +27,7 @@ angular.module('allergia', ['ionic', 'controllers'])
                 url: "/app",
                 abstract: true,
                 templateUrl: "templates/menu.html",
-                controller: 'AppCtrl'
+                controller: 'menuButton'
 
             })
 
@@ -45,7 +45,7 @@ angular.module('allergia', ['ionic', 'controllers'])
                 views: {
                     'menuContent': {
                         templateUrl: "templates/tallinn.html",
-                        controller: 'AppCtrl2'
+                        controller: 'tlnChart'
                     }
                 }
             })
@@ -55,6 +55,15 @@ angular.module('allergia', ['ionic', 'controllers'])
                 views: {
                     'menuContent': {
                         templateUrl: "templates/info.html"
+                    }
+                }
+            })
+
+            .state('app.tips', {
+                url: "/tips",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/tips.html"
                     }
                 }
             })

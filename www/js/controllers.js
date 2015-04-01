@@ -1,7 +1,7 @@
 angular.module('controllers', ['highcharts-ng'])
 
     // Menu button controller
-    .controller('AppCtrl', function ($scope, $ionicSideMenuDelegate) {
+    .controller('menuButton', function ($scope, $ionicSideMenuDelegate) {
 
         $scope.toggleLeft = function () {
             $ionicSideMenuDelegate.toggleLeft();
@@ -9,7 +9,7 @@ angular.module('controllers', ['highcharts-ng'])
 
     })
 
-    .controller('AppCtrl2', function($scope) {
+    .controller('tlnChart', function($scope) {
 
         $scope.chartConfig = {
             options: {
@@ -18,8 +18,25 @@ angular.module('controllers', ['highcharts-ng'])
                 }
             },
             series: [{
-                data: [10, 15, 12, 8, 7]
+                name: 'Year 1800',
+                data: [107, 31, 635, 203, 2]
             }],
+            xAxis: {
+                categories: ['09.04', '10.04', '11.04', '12.04', '13.04'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Population (millions)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
             title: {
                 text: 'Lepp'
             },
@@ -28,4 +45,3 @@ angular.module('controllers', ['highcharts-ng'])
         }
 
     })
-
