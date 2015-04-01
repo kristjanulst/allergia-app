@@ -62,20 +62,53 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards'])
 
     .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate) {
         var cardTypes = [{
-            title: 'Swipe down to clear the card',
-            image: 'img/pic.png'
+            title: 'Mere ääres on õietolmu tase oluliselt madalam kui mandril',
+            image: 'img/rand-meri.png'
         }, {
-            title: 'Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.',
-            image: 'img/pic.png'
+            title: 'Püsi kuivade ja tuuliste ilmadega toas. Siis on õietolmu õhus kõige rohkem.',
+            image: 'img/windy.png'
         }, {
-            title: 'Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.',
-            image: 'img/pic2.png'
+            title: 'Kõige ideaalsem on välja minna vahetult peale vihma, mis eemaldab väga efektiivselt õhust tolmu.',
+            image: 'img/rain.png'
         }, {
-            title: 'Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.',
-            image: 'img/pic3.png'
+            title: 'Muru niitmine ja rohimine olgu allergiavaba pereliikme ülesanne, kuna need aiatööd elavdavad allergeene. Kui sa tõesti pead neid töid tegema, kanna õues tolmumaski.',
+            image: 'img/lawn-mower.png'
         }, {
-            title: 'What kind of clouds are these?',
-            image: 'img/pic4.png'
+            title: 'Kuna õietolm jääb nii riiete kui jalanõude külge, eemalda õueskantud riided tuppa tulles. Eriti hoolika ettevaatusabinõuna võib veega üle loputada ka naha ja juuksed.',
+            image: 'img/hiking.png'
+        }, {
+            title: 'Lemmiklooma karva külge jääb õietolm samuti suurepäraselt, nii et targem oleks õite tolmlemise ajal keelata lemmikloomal ronida voodisse ja diivanile.',
+            image: 'img/dog.png'
+        }, {
+            title: 'Hakka ravimit võtma enne, kui läkastamine ilmneb.',
+            image: 'img/pills.png'
+        }, {
+            title: 'Õueskäimisel püüa vältida hommikust aega, mil tolmuosakesi on õhus kõige rohkem.',
+            image: 'img/morning.png'
+        }, {
+            title: 'Põrandate tolmust puhtaks imemisel kasuta bakterioloogilise filtriga tolmuimejat.',
+            image: 'img/vacuum-cleaner.png'
+        }, {
+            title: 'Tõmba madratsitele ja patjadele ümber allergiavabad katted.',
+            image: 'img/pillow.png'
+        }, {
+            title: 'Pese linu ja rätikuid vähemalt 54-kraadises vees.',
+            image: 'img/wash.png'
+        }, {
+            title: 'Võimalusel vaheta vaipkate laminaatpõranda või muu samalaadse kõva materjaliga, mis ei kogu endasse tolmulesti ja teisi allergiat tekitavaid osakesi (eriti just magamistoas).',
+            image: 'img/laminate.png'
+        }, {
+            title: 'Ära treeni õues tuulise ilmaga, siis lendleb õhus rohkem õietolmu.',
+            image: 'img/running.png'
+        }, {
+            title: 'Vähenda õietolmu hooajal ajutiselt treeningkoormust.',
+            image: 'img/training.png'
+        }, {
+            title: 'Muuda jooksuteekonda, et vältida põlluservi ja metsaaluseid radu.',
+            image: 'img/running_2.png'
+        }, {
+            title: 'Õietolmu hulk õhus on kõige kõrgem hommikul kella 5-10 vahel.',
+            image: 'img/morning_2.png'
         }];
 
         $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);

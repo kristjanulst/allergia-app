@@ -1,10 +1,11 @@
 <ion-view view-title="Nõuanded">
     <ion-content>
-      <!--  <div class="row responsive-sm">
-            &lt;!&ndash;<div class="col"><h1>Nõuanded</h1></div>&ndash;&gt;
+
+       <!-- <div class="row responsive-sm">
+            <div class="col"><h1>Nõuanded</h1></div>
         </div>-->
 
-        <div class="korgus" ng-app="controllers" no-scroll>
+        <div class="row korgus" no-scroll>
 
         <ion-pane ng-controller="CardsCtrl">
             <!--<ion-header-bar class="bar-transparent">
@@ -14,12 +15,13 @@
                 <swipe-card on-card-swipe="cardSwiped()" id="start-card">
                     Swipe down for a new card
                 </swipe-card>
-                <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)">
+                <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)" class="card-border">
                     <div ng-controller="CardCtrl">
 
                         <div class="image">
                             <img ng-src="{{card.image}}">
                         </div>
+
                         <div class="title">
                             {{card.title}}
                         </div>
