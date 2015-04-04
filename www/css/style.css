@@ -4,6 +4,10 @@
     text-align: center;
 }
 
+.margin-right-10 {
+    margin-right: 10px;
+}
+
 .margin-top-15 {
     margin-top: 15px;
 }
@@ -121,8 +125,69 @@ swipe-card.pop-in {
 }
 
 .korgus {
-    height: 390px;
+    height: 330px;
 }
 .card-border {
     border: 6px solid #387EF5;
+}
+
+.list .item.item-accordion {
+    line-height: 38px;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+    line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+    display: block !important;
+}
+
+.item-icon-left ion-spinner {
+    float: left;
+    margin-left: -3.2em;
+    margin-right: 1em;
+    margin-top: -0.2em;
+}
+
+.spinner svg {
+    width: 28px;
+    height: 28px;
+    stroke: #999;
+    fill: #999;
+}
+
+/*splash screen*/
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.thumbnail {
+    position: absolute;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+.image img {
+    -webkit-transition: all 0.5s ease; /* Safari and Chrome */
+    -moz-transition: all 0.5s ease; /* Firefox */
+    -o-transition: all 0.5s ease; /* IE 9 */
+    -ms-transition: all 0.5s ease; /* Opera */
+    transition: all 0.5s ease;
+}
+
+.image.zoom img {
+    -webkit-transform:scale( 2.25); /* Safari and Chrome */
+    -moz-transform:scale( 2.25); /* Firefox */
+    -ms-transform:scale( 2.25); /* IE 9 */
+    -o-transform:scale( 2.25); /* Opera */
+    transform:scale( 2.25);
+    opacity: 0;
 }

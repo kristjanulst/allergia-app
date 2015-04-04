@@ -1,0 +1,42 @@
+# Tallinn 1
+# Kuressaare,UIP,000[M],Value
+# Kuressaare,Alternaria,000[M],Value
+# Kuressaare,Cladosporum,000[M],Value
+# Kuressaare,Jalakas,000[M],Value
+# Kuressaare,Kadakas,000[M],Value
+# Kuressaare,Kask,000[M],Value
+# Kuressaare,K?rrelised,000[M],Value
+# Kuressaare,Kuusk,000[M],Value
+# Kuressaare,Lepp,000[M],Value
+# Kuressaare,M?nd,000[M],Value
+P03*
+1 M0UIP000 1 [tk/m3]
+2 M0UIP000 0
+3 MALTR000 1 [tk/m3]
+4 MALTR000 0
+5 MCLAD000 1 [tk/m3]
+6 MCLAD000 0
+7 MJALA000 1 [tk/m3]
+8 MJALA000 0
+9 MKADA000 1 [tk/m3]
+10 MKADA000 0
+11 MKASK000 1 [tk/m3]
+12 MKASK000 0
+13 MKORR000 1 [tk/m3]
+14 MKORR000 0
+15 MKUUS000 1 [tk/m3]
+16 MKUUS000 0
+17 MLEPP000 1 [tk/m3]
+18 MLEPP000 0
+19 MMAND000 1 [tk/m3]
+20 MMAND000 0
+EOH
+140304, 0000, 3, 5, 0, 14, 5, 5, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 57, 5, 0, 14, 
+140305, 0000, 0, 14, 0, 14, 10, 5, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 591, 5, 0, 14, 
+140306, 0000, 0, 14, 0, 14, 10, 5, 0, 14, 0, 14, 2, 5, 0, 14, 0, 14, 639, 5, 0, 14, 
+140307, 0000, 0, 14, 0, 14, 50, 5, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 480, 5, 0, 14, 
+140308, 0000, 2, 5, 0, 14, 19, 5, 0, 14, 0, 14, 1, 14, 0, 14, 0, 14, 398, 5, 1, 14, 
+140309, 0000, 0, 14, 0, 14, 41, 5, 0, 14, 1, 14, 1, 14, 0, 14, 0, 14, 1305, 5, 0, 14, 
+140310, 0000, 1, 14, 0, 14, 14, 5, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 687, 5, 2, 5, 
+140311, 0000, 0, 14, 0, 14, 32, 5, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 238, 5, 0, 14, 
+EOF

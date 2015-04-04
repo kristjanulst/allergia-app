@@ -1,39 +1,58 @@
-<ion-view view-title="Nõuanded">
+<ion-view view-title="Vihjed">
     <ion-content>
-
-       <!-- <div class="row responsive-sm">
-            <div class="col"><h1>Nõuanded</h1></div>
-        </div>-->
+        <ion-refresher pulling-text="Värskendamiseks tiri alla" on-refresh="doRefresh()"></ion-refresher>
+        <!-- <div class="row responsive-sm">
+             <div class="col"><h1>Nõuanded</h1></div>
+         </div>-->
 
         <div class="row korgus" no-scroll>
+            <ion-pane ng-controller="CardsCtrl">
+                <!--<ion-header-bar class="bar-transparent">
+                    <h1 class="title">Help Out</h1>
+                </ion-header-bar>-->
+                <swipe-cards>
+                    <swipe-card on-card-swipe="cardSwiped()" id="start-card">
+                        Swipe down for a new card
+                    </swipe-card>
+                    <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)"
+                                on-card-swipe="cardSwiped($index)" class="card-border">
+                        <div ng-controller="CardCtrl">
 
-        <ion-pane ng-controller="CardsCtrl">
-            <!--<ion-header-bar class="bar-transparent">
-                <h1 class="title">Help Out</h1>
-            </ion-header-bar>-->
-            <swipe-cards>
-                <swipe-card on-card-swipe="cardSwiped()" id="start-card">
-                    Swipe down for a new card
-                </swipe-card>
-                <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)" class="card-border">
-                    <div ng-controller="CardCtrl">
+                            <div class="image">
+                                <img ng-src="{{card.image}}">
+                            </div>
 
-                        <div class="image">
-                            <img ng-src="{{card.image}}">
+                            <div class="title">
+                                {{card.title}}
+                            </div>
+                            <!--<div class="button-bar">
+                                <button class="button button-clear button-positive" ng-click="goAway()">Answer</button>
+                                <button class="button button-clear button-positive" ng-click="goAway()">Decline</button>
+                            </div>-->
                         </div>
-
-                        <div class="title">
-                            {{card.title}}
-                        </div>
-                        <!--<div class="button-bar">
-                            <button class="button button-clear button-positive" ng-click="goAway()">Answer</button>
-                            <button class="button button-clear button-positive" ng-click="goAway()">Decline</button>
-                        </div>-->
-                    </div>
-                </swipe-card>
-            </swipe-cards>
-        </ion-pane>
+                    </swipe-card>
+                </swipe-cards>
+            </ion-pane>
         </div>
-
     </ion-content>
+
+
+<ion-tabs class="tabs-icon-top tabs-positive">
+
+    <!-- Dashboard Tab -->
+    <ion-tab title="Info" icon-off="ion-ios-information-outline" icon-on="ion-ios-information" href="#/app/info">
+
+    </ion-tab>
+
+    <!-- Chats Tab -->
+    <ion-tab title="Tabel" icon-off="ion-ios-grid-view-outline" icon-on="ion-ios-grid-view" href="#/app/table">
+
+    </ion-tab>
+
+    <!-- Account Tab -->
+    <ion-tab title="Vihjed" icon-off="ion-ios-lightbulb-outline" icon-on="ion-lightbulb" href="#/app/tips">
+
+    </ion-tab>
+
+</ion-tabs>
 </ion-view>

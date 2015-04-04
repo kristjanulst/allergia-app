@@ -1,57 +1,29 @@
-<ion-view view-title="Tartu">
+<ion-view view-title="Nõuanded">
     <ion-content has-header="true" padding="true">
-        <div class="list card">
-        <div class="row item-divider">
-            <div class="col col-50"></div>
-            <div class="col center">Allergia</div>
-            <div class="col center">Külmetus</div>
-        </div>
-        <div class="row margin-top-15">
-            <div class="col col-50 margin-top-15">Aevastamine</div>
-            <div class="col center margin-top-15 border-right"><i class="ion-close-round"></i></div>
-            <div class="col center margin-top-15"><i class="ion-close-round"></i></div>
-        </div>
-        <div class="row">
-            <div class="col col-50 border-top">Ninakinnisus</div>
-            <div class="col center border-right border-top"><i class="ion-close-round"></i></div>
-            <div class="col center border-top"><i class="ion-close-round"></i></div>
-        </div>
-        <div class="row">
-            <div class="col col-50 border-top">Tilkuv nina (läbipaistev lima)</div>
-            <div class="col center border-right border-top"><i class="ion-close-round"></i></div>
-            <div class="col center border-top"></div>
-        </div>
-        <div class="row">
-            <div class="col col-50 border-top">Tilkuv nina (kollane lima)</div>
-            <div class="col center border-right border-top"></div>
-            <div class="col center border-top"><i class="ion-close-round"></i></div>
-        </div>
-        <div class="row">
-            <div class="col col-50 border-top">Sügelus, vesised silmad</div>
-            <div class="col center border-right border-top"><i class="ion-close-round"></i></div>
-            <div class="col center border-top"></div>
-        </div>
-        <div class="row">
-            <div class="col col-50 border-top">Sügelev nina ja kurk</div>
-            <div class="col center border-right border-top"><i class="ion-close-round"></i></div>
-            <div class="col center border-top"></div>
-        </div>
-        <div class="row">
-            <div class="col col-50 border-top">Kurguvalu</div>
-            <div class="col center border-right border-top"></div>
-            <div class="col center border-top"><i class="ion-close-round"></i></div>
-        </div>
-        <div class="row">
-            <div class="col col-50 border-top">Palavik</div>
-            <div class="col center border-right border-top"></div>
-            <div class="col center border-top"><i class="ion-close-round"></i></div>
-        </div>
-        <div class="row">
-            <div class="col col-50 border-top">Valud</div>
-            <div class="col center border-right border-top"></div>
-            <div class="col center border-top"><i class="ion-close-round"></i></div>
-        </div>
-            </div>
-    </ion-content>
-</ion-view>
+        <ion-refresher pulling-text="Värskendamiseks tiri alla" on-refresh="doRefresh()"></ion-refresher>
+        Käes on kevad ja paljudele toovad soojad ilmad, naasvad laululinnud ning õitsvad puud rõõmu. Nendele umbes 150 000 eestimaalasele ehk 10%le Eesti elanikkonnast, kellel on õietolmuallergia ning kes mingil põhjusel pole teinud ennetavat ravi ega muretsenud endale vajalikke ravimeid, algab raske ja vaevarikas aeg.
+        Märtsist maini on puude õitsemise aeg. Peamised pollinoosi põhjustajad on sarapuu-, lepa- ja kasetolm. Varase kevade korral võib sarapuu õitsema hakata juba veebruari lõpus. Kask õitseb mais. Mai lõpus lisanduvad veel tamme ja võilille õietolm.
 
+        Tänavune kevad saabus vara ja puude õietolmu tuvastati õhus märtsi esimeses dekaadis.
+        Õietolmuallergia avaldub kõige sagedamini pollinoosina, mida nimetatakse veel heinapalavikuks ning mis võib olla silmade, nina ja bronhide reaktsioon õietolmule.
+    </ion-content>
+
+<ion-tabs class="tabs-icon-top tabs-positive">
+
+    <!-- Dashboard Tab -->
+    <ion-tab title="Info" icon-off="ion-ios-information-outline" icon-on="ion-ios-information" href="#/app/info">
+
+    </ion-tab>
+
+    <!-- Chats Tab -->
+    <ion-tab title="Tabel" icon-off="ion-ios-grid-view-outline" icon-on="ion-ios-grid-view" href="#/app/table">
+
+    </ion-tab>
+
+    <!-- Account Tab -->
+    <ion-tab title="Vihjed" icon-off="ion-ios-lightbulb-outline" icon-on="ion-lightbulb" href="#/app/tips">
+
+    </ion-tab>
+
+</ion-tabs>
+</ion-view>

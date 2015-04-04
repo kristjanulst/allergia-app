@@ -1,8 +1,12 @@
 <ion-view view-title="Tallinn">
   <ion-content>
+      <ion-refresher pulling-text="Värskendamiseks tiri alla" on-refresh="doRefresh()"></ion-refresher>
      <!-- <div class="row responsive-sm">
           <div class="col"><h1>tallinna kaart värgid</h1></div>
       </div>-->
-      <highchart id="chart1" config="chartConfig" class="span10"></highchart>
+      <highchart id="chart1" config="alternaria_tln" class="margin-right-10"></highchart>
+      <highchart id="chart2" config="cadosporum_tln" class="margin-right-10"></highchart>
+      <highchart id="chart3" config="jalakas_tln" class="margin-right-10"></highchart>
+      <highchart id="chart4" config="kadakas_tln" class="margin-right-10"></highchart>
   </ion-content>
 </ion-view>
