@@ -38,18 +38,13 @@ function readTextFile(file) {
 
 
                         var kuupaev = rida[0];
-                        var aasta = "20" + kuupaev.substr(0, 2);
+                        var aasta = kuupaev.substr(0, 2);
                         var kuu = kuupaev.substr(2, 2);
                         var paev = kuupaev.substr(4, 2);
 
                         var kell = rida[1];
                         var tunnid = kell.substr(0, 2);
                         var minutid = kell.substr(2, 2);
-
-
-                        //console.log("Sissekanne " + i + ". Kuup�ev: "+paev+"."+kuu+"."+aasta+".");
-                        document.getElementById("tulemus").innerHTML += "Sissekanne " + i + ". <br>Kuup�ev: " + paev + "." + kuu + "." + aasta + ". Kell: " + tunnid + ":" + minutid + "<br>";
-                        document.getElementById("tulemus").innerHTML += "Sissekanded graafikusse:<br>";
 
 
                         for (var j = 0; j < rida.length; j++) {
@@ -59,7 +54,6 @@ function readTextFile(file) {
                                     if (rida[j] != "") {
                                         graafiku_sissekanne = rida[j] + " ";
                                     }
-                                    document.getElementById("tulemus").innerHTML += graafiku_sissekanne + " ";
                                     nr.push(parseInt(graafiku_sissekanne));
                                 }
                             }
@@ -70,7 +64,6 @@ function readTextFile(file) {
                         };
                         sisu.push(obj);
 
-                        document.getElementById("tulemus").innerHTML += "<br><hr>";
                     }
                 }
 

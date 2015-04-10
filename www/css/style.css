@@ -11,23 +11,28 @@
 .margin-top-15 {
     margin-top: 15px;
 }
+
+/*Table*/
 .border-right {
     border-right: solid 1px #ccc;
 }
+
 .border-top {
     border-top: solid 1px #ccc;
 }
 
-.ionic-logo {
-    display: block;
-    margin: 15px auto;
-    width: 96px;
-    height: 96px;
+.border-bottom {
+    border-top: solid 1px #ccc;
 }
 
-/*.pane {
-    background-color: #ccc;
-}*/
+.table-icon-color {
+    color: #2c3b56;
+}
+
+.item-divider {
+    /*background-color: #7C95C9;*/
+}
+/* Swipe cards*/
 
 .bar.bar-transparent {
     background-color: transparent;
@@ -55,16 +60,16 @@ swipe-card {
     margin-top: -150px;
     box-sizing: border-box;
     background-color: rgb(255,255,255);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
     -webkit-animation-fill-mode: forwards;
 }
 
-
 swipe-card .title {
     height: auto;
     padding: 7px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 20px;
     color: #fff;
     bottom:0;
     position: absolute;
@@ -72,33 +77,43 @@ swipe-card .title {
     background-color: #171b27;
     text-align: center;
 }
+
 swipe-card .image {
     overflow: hidden;
     max-height: 300px;
     z-index: -1;
 }
-swipe-card .button {
-    border: none;
-}
+
 swipe-card .image img {
     width: 100%;
-    border-radius: 0px 0px 4px 4px;
 }
 
 #start-card {
     color: #fff;
-    background-color: #065ce5;
+    background-color: #506b9b;
     line-height: 300px;
     word-wrap: break-word;
-    border: 6px solid #387EF5;
+    border: 3px solid #3A4F76;
     text-align: center;
 }
+
 #start-card span {
-    display: inline-block;
+    display: block;
     line-height: 40px;
-    width: 200px;
+    width: 100%;
     font-size: 30px;
     vertical-align: middle;
+    position: relative;
+    top: 60px;
+}
+
+#start-card img {
+    display: block;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 65px;
 }
 
 #footer .button {
@@ -120,6 +135,7 @@ swipe-card .image img {
 swipe-card.pop-in-start {
     -webkit-transform: scale(0,0);
 }
+
 swipe-card.pop-in {
     -webkit-animation: bounceIn 0.4s ease-out;
 }
@@ -127,8 +143,9 @@ swipe-card.pop-in {
 .korgus {
     height: 330px;
 }
+
 .card-border {
-    border: 6px solid #387EF5;
+    border: 3px solid #3A4F76;
 }
 
 .list .item.item-accordion {
@@ -137,9 +154,11 @@ swipe-card.pop-in {
     padding-bottom: 0;
     transition: 0.09s all linear;
 }
+
 .list .item.item-accordion.ng-hide {
     line-height: 0px;
 }
+
 .list .item.item-accordion.ng-hide-add,
 .list .item.item-accordion.ng-hide-remove {
     display: block !important;
@@ -159,8 +178,7 @@ swipe-card.pop-in {
     fill: #999;
 }
 
-/*splash screen*/
-
+/* Splash screen*/
 img {
     max-width: 100%;
     display: block;
@@ -176,18 +194,64 @@ img {
 }
 
 .image img {
-    -webkit-transition: all 0.5s ease; /* Safari and Chrome */
-    -moz-transition: all 0.5s ease; /* Firefox */
-    -o-transition: all 0.5s ease; /* IE 9 */
-    -ms-transition: all 0.5s ease; /* Opera */
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
 
 .image.zoom img {
-    -webkit-transform:scale( 2.25); /* Safari and Chrome */
-    -moz-transform:scale( 2.25); /* Firefox */
-    -ms-transform:scale( 2.25); /* IE 9 */
-    -o-transform:scale( 2.25); /* Opera */
+    -webkit-transform:scale( 2.25);
+    -moz-transform:scale( 2.25);
+    -ms-transform:scale( 2.25);
+    -o-transform:scale( 2.25);
     transform:scale( 2.25);
     opacity: 0;
 }
+
+/*Menu*/
+.hiider {
+    height:141px;
+    background-image: url("../img/header-bg2.png");
+}
+
+.main-menu {
+    top: 100px;
+}
+
+.list {
+    top:141px;
+    color: #1b394f;
+}
+
+.item {
+    border-width: 0px;
+    text-color: #fff;
+}
+
+.item-icon-left {
+    padding-left: 85px;
+}
+
+.item-icon-left .icon {
+    left: 15px;
+}
+
+.menu-font-color {
+    color: #2c3b56;
+    padding-top: 5px;
+}
+
+.active h2 {
+    font-weight: bold;
+}
+
+.ion-ios-arrow-right:before {
+    font-size: 25px;
+}
+
+.i .icon .ion-stop .assertive:before {
+    font-size: 10px;
+}
+

@@ -1,6 +1,5 @@
 <ion-view view-title="Vihjed">
     <ion-content>
-        <ion-refresher pulling-text="Värskendamiseks tiri alla" on-refresh="doRefresh()"></ion-refresher>
         <!-- <div class="row responsive-sm">
              <div class="col"><h1>Nõuanded</h1></div>
          </div>-->
@@ -12,7 +11,9 @@
                 </ion-header-bar>-->
                 <swipe-cards>
                     <swipe-card on-card-swipe="cardSwiped()" id="start-card">
-                        Swipe down for a new card
+                        Vihje kuvamiseks tiri sõrmega alla
+                        <img src="../img/sd.png">
+                        <img src="img/sd.png">
                     </swipe-card>
                     <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)"
                                 on-card-swipe="cardSwiped($index)" class="card-border">

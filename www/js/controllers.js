@@ -1,17 +1,21 @@
 angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "firebase"])
 
+    .controller('MainmenuCtrl', function ($scope, $location) {
+        $scope.isActive = function(viewLocation) {
+            return viewLocation === $location.path();
+        };
+    })
 
-    // Splash screen
     .controller('MainCtrl', function ($scope, $timeout, $ionicSideMenuDelegate, $firebaseObject, $localstorage) {
 
         // Splash screen
         $timeout(function () {
             $scope.splashAnimate = true;
-        }, 1000);
+        },3000);
 
         $timeout(function () {
             $scope.splashComplete = true;
-        }, 2000);
+        },4000);
 
         // Toggle Menu Button
         $scope.toggleLeft = function () {
@@ -284,10 +288,9 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
 
     })
 
-    .controller('getData', function ($scope, $ionicSideMenuDelegate, $firebaseObject, $localstorage) {
+    /*.controller('getData', function ($scope, $ionicSideMenuDelegate, $firebaseObject, $localstorage) {
 
-
-    })
+    })*/
 
     .factory('$localstorage', ['$window', function ($window) {
         return {
@@ -398,24 +401,26 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
         var kuressaare_2_5 = $localstorage.getObject('kuressaare_2_5');
         var kuressaare_2_6 = $localstorage.getObject('kuressaare_2_6');
         var kuressaare_2_7 = $localstorage.getObject('kuressaare_2_7');
-
-
-        // TALLINN CHARTS
+        
+        // TALLINN CHARTS BEGIN
+        // TALLINN CHARTS BEGIN
 
         // Alternaria
-        $scope.alternaria_tln = {
+        $scope.Alternaria_tln = {
             options: {
                 chart: {
-                    type: 'line'
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
                 }
             },
             title: {
                 text: 'Alternaria'
             },
             series: [{
-                name: 'Alternaria',
+                name: 'Alternaria (tk/m3)',
+                color: '#FA8215',
                 showInLegend: false,
-                // Andmed
                 data: [
                     tallinn_1_0.numbrid[1],
                     tallinn_1_1.numbrid[1],
@@ -428,7 +433,6 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
                 ]
             }],
             xAxis: {
-                // Kuupäevad
                 categories: [
                     tallinn_1_0.kuupaev,
                     tallinn_1_1.kuupaev,
@@ -439,15 +443,11 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
                     tallinn_1_6.kuupaev,
                     tallinn_1_7.kuupaev
                 ],
-                title: {
-                    text: 'Kuupäev'
-                }
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Õietolmu tase (tk/m3)',
-                    align: 'middle'
+                    text: false
                 },
                 labels: {
                     overflow: 'justify'
@@ -456,23 +456,25 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
             credits: {
                 enabled: false
             },
-
             loading: false
         }
+
         // Cladosporium
-        $scope.cadosporum_tln = {
+        $scope.Cladosporium_tln = {
             options: {
                 chart: {
-                    type: 'bar'
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5
                 }
             },
             title: {
                 text: 'Cladosporium'
             },
             series: [{
-                name: 'Cladosporium',
+                name: 'Cladosporium (tk/m3)',
+                color: '#FA8215',
                 showInLegend: false,
-                // Andmed
                 data: [
                     tallinn_1_0.numbrid[2],
                     tallinn_1_1.numbrid[2],
@@ -485,7 +487,6 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
                 ]
             }],
             xAxis: {
-                // Kuupäevad
                 categories: [
                     tallinn_1_0.kuupaev,
                     tallinn_1_1.kuupaev,
@@ -496,15 +497,11 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
                     tallinn_1_6.kuupaev,
                     tallinn_1_7.kuupaev
                 ],
-                title: {
-                    text: 'Kuupäev'
-                }
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Õietolmu tase (tk/m3)',
-                    align: 'middle'
+                    text: false
                 },
                 labels: {
                     overflow: 'justify'
@@ -513,23 +510,24 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
             credits: {
                 enabled: false
             },
-
             loading: false
         }
         // Jalakas
-        $scope.jalakas_tln = {
+        $scope.Jalakas_tln = {
             options: {
                 chart: {
-                    type: 'area'
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
                 }
             },
             title: {
                 text: 'Jalakas'
             },
             series: [{
-                name: 'Jalakas',
+                name: 'Jalakas (tk/m3)',
+                color: '#FA8215',
                 showInLegend: false,
-                // Andmed
                 data: [
                     tallinn_1_0.numbrid[3],
                     tallinn_1_1.numbrid[3],
@@ -542,7 +540,6 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
                 ]
             }],
             xAxis: {
-                // Kuupäevad
                 categories: [
                     tallinn_1_0.kuupaev,
                     tallinn_1_1.kuupaev,
@@ -553,15 +550,11 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
                     tallinn_1_6.kuupaev,
                     tallinn_1_7.kuupaev
                 ],
-                title: {
-                    text: 'Kuupäev'
-                }
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Õietolmu tase (tk/m3)',
-                    align: 'middle'
+                    text: false
                 },
                 labels: {
                     overflow: 'justify'
@@ -570,23 +563,130 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
             credits: {
                 enabled: false
             },
-
             loading: false
         }
         // Kadakas
-        $scope.kadakas_tln = {
+        $scope.Kadakas_tln = {
             options: {
                 chart: {
-                    type: 'areaspline'
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
                 }
             },
             title: {
                 text: 'Kadakas'
             },
             series: [{
-                name: 'Kadakas',
+                name: 'Kadakas (tk/m3)',
+                color: '#FA8215',
                 showInLegend: false,
-                // Andmed
+                data: [
+                    tallinn_1_0.numbrid[4],
+                    tallinn_1_1.numbrid[4],
+                    tallinn_1_2.numbrid[4],
+                    tallinn_1_3.numbrid[4],
+                    tallinn_1_4.numbrid[4],
+                    tallinn_1_5.numbrid[4],
+                    tallinn_1_6.numbrid[4],
+                    tallinn_1_7.numbrid[4]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_1_0.kuupaev,
+                    tallinn_1_1.kuupaev,
+                    tallinn_1_2.kuupaev,
+                    tallinn_1_3.kuupaev,
+                    tallinn_1_4.kuupaev,
+                    tallinn_1_5.kuupaev,
+                    tallinn_1_6.kuupaev,
+                    tallinn_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kask
+        $scope.Kask_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kask'
+            },
+            series: [{
+                name: 'Kask (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_1_0.numbrid[5],
+                    tallinn_1_1.numbrid[5],
+                    tallinn_1_2.numbrid[5],
+                    tallinn_1_3.numbrid[5],
+                    tallinn_1_4.numbrid[5],
+                    tallinn_1_5.numbrid[5],
+                    tallinn_1_6.numbrid[5],
+                    tallinn_1_7.numbrid[5]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_1_0.kuupaev,
+                    tallinn_1_1.kuupaev,
+                    tallinn_1_2.kuupaev,
+                    tallinn_1_3.kuupaev,
+                    tallinn_1_4.kuupaev,
+                    tallinn_1_5.kuupaev,
+                    tallinn_1_6.kuupaev,
+                    tallinn_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kõrrelised
+        $scope.Korrelised_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kõrrelised'
+            },
+            series: [{
+                name: 'Kõrrelised (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
                 data: [
                     tallinn_1_0.numbrid[6],
                     tallinn_1_1.numbrid[6],
@@ -599,7 +699,6 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
                 ]
             }],
             xAxis: {
-                // Kuupäevad
                 categories: [
                     tallinn_1_0.kuupaev,
                     tallinn_1_1.kuupaev,
@@ -610,15 +709,11 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
                     tallinn_1_6.kuupaev,
                     tallinn_1_7.kuupaev
                 ],
-                title: {
-                    text: 'Kuupäev'
-                }
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Õietolmu tase (tk/m3)',
-                    align: 'middle'
+                    text: false
                 },
                 labels: {
                     overflow: 'justify'
@@ -627,100 +722,4590 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
             credits: {
                 enabled: false
             },
-
+            loading: false
+        }
+        // Kuusk
+        $scope.Kuusk_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kuusk'
+            },
+            series: [{
+                name: 'Kuusk (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_1_0.numbrid[7],
+                    tallinn_1_1.numbrid[7],
+                    tallinn_1_2.numbrid[7],
+                    tallinn_1_3.numbrid[7],
+                    tallinn_1_4.numbrid[7],
+                    tallinn_1_5.numbrid[7],
+                    tallinn_1_6.numbrid[7],
+                    tallinn_1_7.numbrid[7]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_1_0.kuupaev,
+                    tallinn_1_1.kuupaev,
+                    tallinn_1_2.kuupaev,
+                    tallinn_1_3.kuupaev,
+                    tallinn_1_4.kuupaev,
+                    tallinn_1_5.kuupaev,
+                    tallinn_1_6.kuupaev,
+                    tallinn_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Lepp
+        $scope.Lepp_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Lepp'
+            },
+            series: [{
+                name: 'Lepp (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_1_0.numbrid[8],
+                    tallinn_1_1.numbrid[8],
+                    tallinn_1_2.numbrid[8],
+                    tallinn_1_3.numbrid[8],
+                    tallinn_1_4.numbrid[8],
+                    tallinn_1_5.numbrid[8],
+                    tallinn_1_6.numbrid[8],
+                    tallinn_1_7.numbrid[8]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_1_0.kuupaev,
+                    tallinn_1_1.kuupaev,
+                    tallinn_1_2.kuupaev,
+                    tallinn_1_3.kuupaev,
+                    tallinn_1_4.kuupaev,
+                    tallinn_1_5.kuupaev,
+                    tallinn_1_6.kuupaev,
+                    tallinn_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Mänd
+        $scope.Mand_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Mänd'
+            },
+            series: [{
+                name: 'Mänd (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_1_0.numbrid[9],
+                    tallinn_1_1.numbrid[9],
+                    tallinn_1_2.numbrid[9],
+                    tallinn_1_3.numbrid[9],
+                    tallinn_1_4.numbrid[9],
+                    tallinn_1_5.numbrid[9],
+                    tallinn_1_6.numbrid[9],
+                    tallinn_1_7.numbrid[9]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_1_0.kuupaev,
+                    tallinn_1_1.kuupaev,
+                    tallinn_1_2.kuupaev,
+                    tallinn_1_3.kuupaev,
+                    tallinn_1_4.kuupaev,
+                    tallinn_1_5.kuupaev,
+                    tallinn_1_6.kuupaev,
+                    tallinn_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Nõges
+        $scope.Noges_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Nõges'
+            },
+            series: [{
+                name: 'Nõges (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_2_0.numbrid[0],
+                    tallinn_2_1.numbrid[0],
+                    tallinn_2_2.numbrid[0],
+                    tallinn_2_3.numbrid[0],
+                    tallinn_2_4.numbrid[0],
+                    tallinn_2_5.numbrid[0],
+                    tallinn_2_6.numbrid[0],
+                    tallinn_2_7.numbrid[0]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_2_0.kuupaev,
+                    tallinn_2_1.kuupaev,
+                    tallinn_2_2.kuupaev,
+                    tallinn_2_3.kuupaev,
+                    tallinn_2_4.kuupaev,
+                    tallinn_2_5.kuupaev,
+                    tallinn_2_6.kuupaev,
+                    tallinn_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Oblikas
+        $scope.Oblikas_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Oblikas'
+            },
+            series: [{
+                name: 'Oblikas (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_2_0.numbrid[1],
+                    tallinn_2_1.numbrid[1],
+                    tallinn_2_2.numbrid[1],
+                    tallinn_2_3.numbrid[1],
+                    tallinn_2_4.numbrid[1],
+                    tallinn_2_5.numbrid[1],
+                    tallinn_2_6.numbrid[1],
+                    tallinn_2_7.numbrid[1]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_2_0.kuupaev,
+                    tallinn_2_1.kuupaev,
+                    tallinn_2_2.kuupaev,
+                    tallinn_2_3.kuupaev,
+                    tallinn_2_4.kuupaev,
+                    tallinn_2_5.kuupaev,
+                    tallinn_2_6.kuupaev,
+                    tallinn_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Paju
+        $scope.Paju_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Paju'
+            },
+            series: [{
+                name: 'Paju (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_2_0.numbrid[2],
+                    tallinn_2_1.numbrid[2],
+                    tallinn_2_2.numbrid[2],
+                    tallinn_2_3.numbrid[2],
+                    tallinn_2_4.numbrid[2],
+                    tallinn_2_5.numbrid[2],
+                    tallinn_2_6.numbrid[2],
+                    tallinn_2_7.numbrid[2]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_2_0.kuupaev,
+                    tallinn_2_1.kuupaev,
+                    tallinn_2_2.kuupaev,
+                    tallinn_2_3.kuupaev,
+                    tallinn_2_4.kuupaev,
+                    tallinn_2_5.kuupaev,
+                    tallinn_2_6.kuupaev,
+                    tallinn_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Pappel
+        $scope.Pappel_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Pappel'
+            },
+            series: [{
+                name: 'Pappel (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_2_0.numbrid[3],
+                    tallinn_2_1.numbrid[3],
+                    tallinn_2_2.numbrid[3],
+                    tallinn_2_3.numbrid[3],
+                    tallinn_2_4.numbrid[3],
+                    tallinn_2_5.numbrid[3],
+                    tallinn_2_6.numbrid[3],
+                    tallinn_2_7.numbrid[3]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_2_0.kuupaev,
+                    tallinn_2_1.kuupaev,
+                    tallinn_2_2.kuupaev,
+                    tallinn_2_3.kuupaev,
+                    tallinn_2_4.kuupaev,
+                    tallinn_2_5.kuupaev,
+                    tallinn_2_6.kuupaev,
+                    tallinn_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Puju
+        $scope.Puju_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Puju'
+            },
+            series: [{
+                name: 'Puju (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_2_0.numbrid[4],
+                    tallinn_2_1.numbrid[4],
+                    tallinn_2_2.numbrid[4],
+                    tallinn_2_3.numbrid[4],
+                    tallinn_2_4.numbrid[4],
+                    tallinn_2_5.numbrid[4],
+                    tallinn_2_6.numbrid[4],
+                    tallinn_2_7.numbrid[4]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_2_0.kuupaev,
+                    tallinn_2_1.kuupaev,
+                    tallinn_2_2.kuupaev,
+                    tallinn_2_3.kuupaev,
+                    tallinn_2_4.kuupaev,
+                    tallinn_2_5.kuupaev,
+                    tallinn_2_6.kuupaev,
+                    tallinn_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Saar
+        $scope.Saar_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Saar'
+            },
+            series: [{
+                name: 'Saar (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_2_0.numbrid[5],
+                    tallinn_2_1.numbrid[5],
+                    tallinn_2_2.numbrid[5],
+                    tallinn_2_3.numbrid[5],
+                    tallinn_2_4.numbrid[5],
+                    tallinn_2_5.numbrid[5],
+                    tallinn_2_6.numbrid[5],
+                    tallinn_2_7.numbrid[5]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_2_0.kuupaev,
+                    tallinn_2_1.kuupaev,
+                    tallinn_2_2.kuupaev,
+                    tallinn_2_3.kuupaev,
+                    tallinn_2_4.kuupaev,
+                    tallinn_2_5.kuupaev,
+                    tallinn_2_6.kuupaev,
+                    tallinn_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Sarapuu
+        $scope.Sarapuu_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Sarapuu'
+            },
+            series: [{
+                name: 'Sarapuu (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_2_0.numbrid[6],
+                    tallinn_2_1.numbrid[6],
+                    tallinn_2_2.numbrid[6],
+                    tallinn_2_3.numbrid[6],
+                    tallinn_2_4.numbrid[6],
+                    tallinn_2_5.numbrid[6],
+                    tallinn_2_6.numbrid[6],
+                    tallinn_2_7.numbrid[6]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_2_0.kuupaev,
+                    tallinn_2_1.kuupaev,
+                    tallinn_2_2.kuupaev,
+                    tallinn_2_3.kuupaev,
+                    tallinn_2_4.kuupaev,
+                    tallinn_2_5.kuupaev,
+                    tallinn_2_6.kuupaev,
+                    tallinn_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Tamm
+        $scope.Tamm_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Tamm'
+            },
+            series: [{
+                name: 'Tamm (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_2_0.numbrid[7],
+                    tallinn_2_1.numbrid[7],
+                    tallinn_2_2.numbrid[7],
+                    tallinn_2_3.numbrid[7],
+                    tallinn_2_4.numbrid[7],
+                    tallinn_2_5.numbrid[7],
+                    tallinn_2_6.numbrid[7],
+                    tallinn_2_7.numbrid[7]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_2_0.kuupaev,
+                    tallinn_2_1.kuupaev,
+                    tallinn_2_2.kuupaev,
+                    tallinn_2_3.kuupaev,
+                    tallinn_2_4.kuupaev,
+                    tallinn_2_5.kuupaev,
+                    tallinn_2_6.kuupaev,
+                    tallinn_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Vaher
+        $scope.Vaher_tln = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Vaher'
+            },
+            series: [{
+                name: 'Vaher (tk/m3)',
+                color: '#FA8215',
+                showInLegend: false,
+                data: [
+                    tallinn_2_0.numbrid[8],
+                    tallinn_2_1.numbrid[8],
+                    tallinn_2_2.numbrid[8],
+                    tallinn_2_3.numbrid[8],
+                    tallinn_2_4.numbrid[8],
+                    tallinn_2_5.numbrid[8],
+                    tallinn_2_6.numbrid[8],
+                    tallinn_2_7.numbrid[8]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tallinn_2_0.kuupaev,
+                    tallinn_2_1.kuupaev,
+                    tallinn_2_2.kuupaev,
+                    tallinn_2_3.kuupaev,
+                    tallinn_2_4.kuupaev,
+                    tallinn_2_5.kuupaev,
+                    tallinn_2_6.kuupaev,
+                    tallinn_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
             loading: false
         }
 
+        // TALLINN CHARTS END
+        // TALLINN CHARTS END
 
 
-        // TARTU CHARTS
+        // TARTU CHARTS BEGIN
+        // TARTU CHARTS BEGIN
 
-        $scope.test = {
-
-            "options": {
-                "chart": {
-                    "type": "areaspline"
-                },
-                "plotOptions": {
-                    "series": {
-                        "stacking": "dsfs"
-                    }
+        // Alternaria
+        $scope.Alternaria_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
                 }
             },
+            title: {
+                text: 'Alternaria'
+            },
+            series: [{
+                name: 'Alternaria (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_1_0.numbrid[1],
+                    tartu_1_1.numbrid[1],
+                    tartu_1_2.numbrid[1],
+                    tartu_1_3.numbrid[1],
+                    tartu_1_4.numbrid[1],
+                    tartu_1_5.numbrid[1],
+                    tartu_1_6.numbrid[1],
+                    tartu_1_7.numbrid[1]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
 
-            "series": [
+        // Cladosporium
+        $scope.Cladosporium_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5
+                }
+            },
+            title: {
+                text: 'Cladosporium'
+            },
+            series: [{
+                name: 'Cladosporium (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_1_0.numbrid[2],
+                    tartu_1_1.numbrid[2],
+                    tartu_1_2.numbrid[2],
+                    tartu_1_3.numbrid[2],
+                    tartu_1_4.numbrid[2],
+                    tartu_1_5.numbrid[2],
+                    tartu_1_6.numbrid[2],
+                    tartu_1_7.numbrid[2]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Jalakas
+        $scope.Jalakas_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Jalakas'
+            },
+            series: [{
+                name: 'Jalakas (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_1_0.numbrid[3],
+                    tartu_1_1.numbrid[3],
+                    tartu_1_2.numbrid[3],
+                    tartu_1_3.numbrid[3],
+                    tartu_1_4.numbrid[3],
+                    tartu_1_5.numbrid[3],
+                    tartu_1_6.numbrid[3],
+                    tartu_1_7.numbrid[3]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kadakas
+        $scope.Kadakas_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kadakas'
+            },
+            series: [{
+                name: 'Kadakas (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_1_0.numbrid[4],
+                    tartu_1_1.numbrid[4],
+                    tartu_1_2.numbrid[4],
+                    tartu_1_3.numbrid[4],
+                    tartu_1_4.numbrid[4],
+                    tartu_1_5.numbrid[4],
+                    tartu_1_6.numbrid[4],
+                    tartu_1_7.numbrid[4]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kask
+        $scope.Kask_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kask'
+            },
+            series: [{
+                name: 'Kask (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_1_0.numbrid[5],
+                    tartu_1_1.numbrid[5],
+                    tartu_1_2.numbrid[5],
+                    tartu_1_3.numbrid[5],
+                    tartu_1_4.numbrid[5],
+                    tartu_1_5.numbrid[5],
+                    tartu_1_6.numbrid[5],
+                    tartu_1_7.numbrid[5]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kõrrelised
+        $scope.Korrelised_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kõrrelised'
+            },
+            series: [{
+                name: 'Kõrrelised (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_1_0.numbrid[6],
+                    tartu_1_1.numbrid[6],
+                    tartu_1_2.numbrid[6],
+                    tartu_1_3.numbrid[6],
+                    tartu_1_4.numbrid[6],
+                    tartu_1_5.numbrid[6],
+                    tartu_1_6.numbrid[6],
+                    tartu_1_7.numbrid[6]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kuusk
+        $scope.Kuusk_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kuusk'
+            },
+            series: [{
+                name: 'Kuusk (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_1_0.numbrid[7],
+                    tartu_1_1.numbrid[7],
+                    tartu_1_2.numbrid[7],
+                    tartu_1_3.numbrid[7],
+                    tartu_1_4.numbrid[7],
+                    tartu_1_5.numbrid[7],
+                    tartu_1_6.numbrid[7],
+                    tartu_1_7.numbrid[7]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Lepp
+        $scope.Lepp_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Lepp'
+            },
+            series: [{
+                name: 'Lepp (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_1_0.numbrid[8],
+                    tartu_1_1.numbrid[8],
+                    tartu_1_2.numbrid[8],
+                    tartu_1_3.numbrid[8],
+                    tartu_1_4.numbrid[8],
+                    tartu_1_5.numbrid[8],
+                    tartu_1_6.numbrid[8],
+                    tartu_1_7.numbrid[8]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Mänd
+        $scope.Mand_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Mänd'
+            },
+            series: [{
+                name: 'Mänd (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_1_0.numbrid[9],
+                    tartu_1_1.numbrid[9],
+                    tartu_1_2.numbrid[9],
+                    tartu_1_3.numbrid[9],
+                    tartu_1_4.numbrid[9],
+                    tartu_1_5.numbrid[9],
+                    tartu_1_6.numbrid[9],
+                    tartu_1_7.numbrid[9]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Nõges
+        $scope.Noges_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Nõges'
+            },
+            series: [{
+                name: 'Nõges (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_2_0.numbrid[0],
+                    tartu_2_1.numbrid[0],
+                    tartu_2_2.numbrid[0],
+                    tartu_2_3.numbrid[0],
+                    tartu_2_4.numbrid[0],
+                    tartu_2_5.numbrid[0],
+                    tartu_2_6.numbrid[0],
+                    tartu_2_7.numbrid[0]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_2_0.kuupaev,
+                    tartu_2_1.kuupaev,
+                    tartu_2_2.kuupaev,
+                    tartu_2_3.kuupaev,
+                    tartu_2_4.kuupaev,
+                    tartu_2_5.kuupaev,
+                    tartu_2_6.kuupaev,
+                    tartu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Oblikas
+        $scope.Oblikas_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Oblikas'
+            },
+            series: [{
+                name: 'Oblikas (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_2_0.numbrid[1],
+                    tartu_2_1.numbrid[1],
+                    tartu_2_2.numbrid[1],
+                    tartu_2_3.numbrid[1],
+                    tartu_2_4.numbrid[1],
+                    tartu_2_5.numbrid[1],
+                    tartu_2_6.numbrid[1],
+                    tartu_2_7.numbrid[1]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_2_0.kuupaev,
+                    tartu_2_1.kuupaev,
+                    tartu_2_2.kuupaev,
+                    tartu_2_3.kuupaev,
+                    tartu_2_4.kuupaev,
+                    tartu_2_5.kuupaev,
+                    tartu_2_6.kuupaev,
+                    tartu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Paju
+        $scope.Paju_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Paju'
+            },
+            series: [{
+                name: 'Paju (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_2_0.numbrid[2],
+                    tartu_2_1.numbrid[2],
+                    tartu_2_2.numbrid[2],
+                    tartu_2_3.numbrid[2],
+                    tartu_2_4.numbrid[2],
+                    tartu_2_5.numbrid[2],
+                    tartu_2_6.numbrid[2],
+                    tartu_2_7.numbrid[2]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_2_0.kuupaev,
+                    tartu_2_1.kuupaev,
+                    tartu_2_2.kuupaev,
+                    tartu_2_3.kuupaev,
+                    tartu_2_4.kuupaev,
+                    tartu_2_5.kuupaev,
+                    tartu_2_6.kuupaev,
+                    tartu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Pappel
+        $scope.Pappel_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Pappel'
+            },
+            series: [{
+                name: 'Pappel (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_2_0.numbrid[3],
+                    tartu_2_1.numbrid[3],
+                    tartu_2_2.numbrid[3],
+                    tartu_2_3.numbrid[3],
+                    tartu_2_4.numbrid[3],
+                    tartu_2_5.numbrid[3],
+                    tartu_2_6.numbrid[3],
+                    tartu_2_7.numbrid[3]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_2_0.kuupaev,
+                    tartu_2_1.kuupaev,
+                    tartu_2_2.kuupaev,
+                    tartu_2_3.kuupaev,
+                    tartu_2_4.kuupaev,
+                    tartu_2_5.kuupaev,
+                    tartu_2_6.kuupaev,
+                    tartu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Puju
+        $scope.Puju_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Puju'
+            },
+            series: [{
+                name: 'Puju (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_2_0.numbrid[4],
+                    tartu_2_1.numbrid[4],
+                    tartu_2_2.numbrid[4],
+                    tartu_2_3.numbrid[4],
+                    tartu_2_4.numbrid[4],
+                    tartu_2_5.numbrid[4],
+                    tartu_2_6.numbrid[4],
+                    tartu_2_7.numbrid[4]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_2_0.kuupaev,
+                    tartu_2_1.kuupaev,
+                    tartu_2_2.kuupaev,
+                    tartu_2_3.kuupaev,
+                    tartu_2_4.kuupaev,
+                    tartu_2_5.kuupaev,
+                    tartu_2_6.kuupaev,
+                    tartu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Saar
+        $scope.Saar_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Saar'
+            },
+            series: [{
+                name: 'Saar (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_2_0.numbrid[5],
+                    tartu_2_1.numbrid[5],
+                    tartu_2_2.numbrid[5],
+                    tartu_2_3.numbrid[5],
+                    tartu_2_4.numbrid[5],
+                    tartu_2_5.numbrid[5],
+                    tartu_2_6.numbrid[5],
+                    tartu_2_7.numbrid[5]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_2_0.kuupaev,
+                    tartu_2_1.kuupaev,
+                    tartu_2_2.kuupaev,
+                    tartu_2_3.kuupaev,
+                    tartu_2_4.kuupaev,
+                    tartu_2_5.kuupaev,
+                    tartu_2_6.kuupaev,
+                    tartu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Sarapuu
+        $scope.Sarapuu_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Sarapuu'
+            },
+            series: [{
+                name: 'Sarapuu (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_2_0.numbrid[6],
+                    tartu_2_1.numbrid[6],
+                    tartu_2_2.numbrid[6],
+                    tartu_2_3.numbrid[6],
+                    tartu_2_4.numbrid[6],
+                    tartu_2_5.numbrid[6],
+                    tartu_2_6.numbrid[6],
+                    tartu_2_7.numbrid[6]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_2_0.kuupaev,
+                    tartu_2_1.kuupaev,
+                    tartu_2_2.kuupaev,
+                    tartu_2_3.kuupaev,
+                    tartu_2_4.kuupaev,
+                    tartu_2_5.kuupaev,
+                    tartu_2_6.kuupaev,
+                    tartu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Tamm
+        $scope.Tamm_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Tamm'
+            },
+            series: [{
+                name: 'Tamm (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_2_0.numbrid[7],
+                    tartu_2_1.numbrid[7],
+                    tartu_2_2.numbrid[7],
+                    tartu_2_3.numbrid[7],
+                    tartu_2_4.numbrid[7],
+                    tartu_2_5.numbrid[7],
+                    tartu_2_6.numbrid[7],
+                    tartu_2_7.numbrid[7]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_2_0.kuupaev,
+                    tartu_2_1.kuupaev,
+                    tartu_2_2.kuupaev,
+                    tartu_2_3.kuupaev,
+                    tartu_2_4.kuupaev,
+                    tartu_2_5.kuupaev,
+                    tartu_2_6.kuupaev,
+                    tartu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Vaher
+        $scope.Vaher_trt = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Vaher'
+            },
+            series: [{
+                name: 'Vaher (tk/m3)',
+                color: '#33cd5f',
+                showInLegend: false,
+                data: [
+                    tartu_2_0.numbrid[8],
+                    tartu_2_1.numbrid[8],
+                    tartu_2_2.numbrid[8],
+                    tartu_2_3.numbrid[8],
+                    tartu_2_4.numbrid[8],
+                    tartu_2_5.numbrid[8],
+                    tartu_2_6.numbrid[8],
+                    tartu_2_7.numbrid[8]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    tartu_2_0.kuupaev,
+                    tartu_2_1.kuupaev,
+                    tartu_2_2.kuupaev,
+                    tartu_2_3.kuupaev,
+                    tartu_2_4.kuupaev,
+                    tartu_2_5.kuupaev,
+                    tartu_2_6.kuupaev,
+                    tartu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // TARTU CHARTS END
+        // TARTU CHARTS END
+
+        // PÄRNU CHARTS BEGIN
+        // PÄRNU CHARTS BEGIN
+
+        // Alternaria
+        $scope.Alternaria_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Alternaria'
+            },
+            series: [{
+                name: 'Alternaria (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_1_0.numbrid[1],
+                    parnu_1_1.numbrid[1],
+                    parnu_1_2.numbrid[1],
+                    parnu_1_3.numbrid[1],
+                    parnu_1_4.numbrid[1],
+                    parnu_1_5.numbrid[1],
+                    parnu_1_6.numbrid[1],
+                    parnu_1_7.numbrid[1]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_1_0.kuupaev,
+                    parnu_1_1.kuupaev,
+                    parnu_1_2.kuupaev,
+                    parnu_1_3.kuupaev,
+                    parnu_1_4.kuupaev,
+                    parnu_1_5.kuupaev,
+                    parnu_1_6.kuupaev,
+                    parnu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // Cladosporium
+        $scope.Cladosporium_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5
+                }
+            },
+            title: {
+                text: 'Cladosporium'
+            },
+            series: [{
+                name: 'Cladosporium (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_1_0.numbrid[2],
+                    parnu_1_1.numbrid[2],
+                    parnu_1_2.numbrid[2],
+                    parnu_1_3.numbrid[2],
+                    parnu_1_4.numbrid[2],
+                    parnu_1_5.numbrid[2],
+                    parnu_1_6.numbrid[2],
+                    parnu_1_7.numbrid[2]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_1_0.kuupaev,
+                    parnu_1_1.kuupaev,
+                    parnu_1_2.kuupaev,
+                    parnu_1_3.kuupaev,
+                    parnu_1_4.kuupaev,
+                    parnu_1_5.kuupaev,
+                    parnu_1_6.kuupaev,
+                    parnu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Jalakas
+        $scope.Jalakas_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Jalakas'
+            },
+            series: [{
+                name: 'Jalakas (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_1_0.numbrid[3],
+                    parnu_1_1.numbrid[3],
+                    parnu_1_2.numbrid[3],
+                    parnu_1_3.numbrid[3],
+                    parnu_1_4.numbrid[3],
+                    parnu_1_5.numbrid[3],
+                    parnu_1_6.numbrid[3],
+                    parnu_1_7.numbrid[3]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_1_0.kuupaev,
+                    parnu_1_1.kuupaev,
+                    parnu_1_2.kuupaev,
+                    parnu_1_3.kuupaev,
+                    parnu_1_4.kuupaev,
+                    parnu_1_5.kuupaev,
+                    parnu_1_6.kuupaev,
+                    parnu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kadakas
+        $scope.Kadakas_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kadakas'
+            },
+            series: [{
+                name: 'Kadakas (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_1_0.numbrid[4],
+                    parnu_1_1.numbrid[4],
+                    parnu_1_2.numbrid[4],
+                    parnu_1_3.numbrid[4],
+                    parnu_1_4.numbrid[4],
+                    parnu_1_5.numbrid[4],
+                    parnu_1_6.numbrid[4],
+                    parnu_1_7.numbrid[4]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_1_0.kuupaev,
+                    parnu_1_1.kuupaev,
+                    parnu_1_2.kuupaev,
+                    parnu_1_3.kuupaev,
+                    parnu_1_4.kuupaev,
+                    parnu_1_5.kuupaev,
+                    parnu_1_6.kuupaev,
+                    parnu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kask
+        $scope.Kask_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kask'
+            },
+            series: [{
+                name: 'Kask (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_1_0.numbrid[5],
+                    parnu_1_1.numbrid[5],
+                    parnu_1_2.numbrid[5],
+                    parnu_1_3.numbrid[5],
+                    parnu_1_4.numbrid[5],
+                    parnu_1_5.numbrid[5],
+                    parnu_1_6.numbrid[5],
+                    parnu_1_7.numbrid[5]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_1_0.kuupaev,
+                    parnu_1_1.kuupaev,
+                    parnu_1_2.kuupaev,
+                    parnu_1_3.kuupaev,
+                    parnu_1_4.kuupaev,
+                    parnu_1_5.kuupaev,
+                    parnu_1_6.kuupaev,
+                    parnu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kõrrelised
+        $scope.Korrelised_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kõrrelised'
+            },
+            series: [{
+                name: 'Kõrrelised (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_1_0.numbrid[6],
+                    parnu_1_1.numbrid[6],
+                    parnu_1_2.numbrid[6],
+                    parnu_1_3.numbrid[6],
+                    parnu_1_4.numbrid[6],
+                    parnu_1_5.numbrid[6],
+                    parnu_1_6.numbrid[6],
+                    parnu_1_7.numbrid[6]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_1_0.kuupaev,
+                    parnu_1_1.kuupaev,
+                    parnu_1_2.kuupaev,
+                    parnu_1_3.kuupaev,
+                    parnu_1_4.kuupaev,
+                    parnu_1_5.kuupaev,
+                    parnu_1_6.kuupaev,
+                    parnu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kuusk
+        $scope.Kuusk_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kuusk'
+            },
+            series: [{
+                name: 'Kuusk (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_1_0.numbrid[7],
+                    parnu_1_1.numbrid[7],
+                    parnu_1_2.numbrid[7],
+                    parnu_1_3.numbrid[7],
+                    parnu_1_4.numbrid[7],
+                    parnu_1_5.numbrid[7],
+                    parnu_1_6.numbrid[7],
+                    parnu_1_7.numbrid[7]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_1_0.kuupaev,
+                    parnu_1_1.kuupaev,
+                    parnu_1_2.kuupaev,
+                    parnu_1_3.kuupaev,
+                    parnu_1_4.kuupaev,
+                    parnu_1_5.kuupaev,
+                    parnu_1_6.kuupaev,
+                    parnu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Lepp
+        $scope.Lepp_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Lepp'
+            },
+            series: [{
+                name: 'Lepp (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_1_0.numbrid[8],
+                    parnu_1_1.numbrid[8],
+                    parnu_1_2.numbrid[8],
+                    parnu_1_3.numbrid[8],
+                    parnu_1_4.numbrid[8],
+                    parnu_1_5.numbrid[8],
+                    parnu_1_6.numbrid[8],
+                    parnu_1_7.numbrid[8]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_1_0.kuupaev,
+                    parnu_1_1.kuupaev,
+                    parnu_1_2.kuupaev,
+                    parnu_1_3.kuupaev,
+                    parnu_1_4.kuupaev,
+                    parnu_1_5.kuupaev,
+                    parnu_1_6.kuupaev,
+                    parnu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Mänd
+        $scope.Mand_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Mänd'
+            },
+            series: [{
+                name: 'Mänd (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_1_0.numbrid[9],
+                    parnu_1_1.numbrid[9],
+                    parnu_1_2.numbrid[9],
+                    parnu_1_3.numbrid[9],
+                    parnu_1_4.numbrid[9],
+                    parnu_1_5.numbrid[9],
+                    parnu_1_6.numbrid[9],
+                    parnu_1_7.numbrid[9]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_1_0.kuupaev,
+                    parnu_1_1.kuupaev,
+                    parnu_1_2.kuupaev,
+                    parnu_1_3.kuupaev,
+                    parnu_1_4.kuupaev,
+                    parnu_1_5.kuupaev,
+                    parnu_1_6.kuupaev,
+                    parnu_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Nõges
+        $scope.Noges_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Nõges'
+            },
+            series: [{
+                name: 'Nõges (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_2_0.numbrid[0],
+                    parnu_2_1.numbrid[0],
+                    parnu_2_2.numbrid[0],
+                    parnu_2_3.numbrid[0],
+                    parnu_2_4.numbrid[0],
+                    parnu_2_5.numbrid[0],
+                    parnu_2_6.numbrid[0],
+                    parnu_2_7.numbrid[0]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_2_0.kuupaev,
+                    parnu_2_1.kuupaev,
+                    parnu_2_2.kuupaev,
+                    parnu_2_3.kuupaev,
+                    parnu_2_4.kuupaev,
+                    parnu_2_5.kuupaev,
+                    parnu_2_6.kuupaev,
+                    parnu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Oblikas
+        $scope.Oblikas_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Oblikas'
+            },
+            series: [{
+                name: 'Oblikas (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_2_0.numbrid[1],
+                    parnu_2_1.numbrid[1],
+                    parnu_2_2.numbrid[1],
+                    parnu_2_3.numbrid[1],
+                    parnu_2_4.numbrid[1],
+                    parnu_2_5.numbrid[1],
+                    parnu_2_6.numbrid[1],
+                    parnu_2_7.numbrid[1]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_2_0.kuupaev,
+                    parnu_2_1.kuupaev,
+                    parnu_2_2.kuupaev,
+                    parnu_2_3.kuupaev,
+                    parnu_2_4.kuupaev,
+                    parnu_2_5.kuupaev,
+                    parnu_2_6.kuupaev,
+                    parnu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Paju
+        $scope.Paju_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Paju'
+            },
+            series: [{
+                name: 'Paju (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_2_0.numbrid[2],
+                    parnu_2_1.numbrid[2],
+                    parnu_2_2.numbrid[2],
+                    parnu_2_3.numbrid[2],
+                    parnu_2_4.numbrid[2],
+                    parnu_2_5.numbrid[2],
+                    parnu_2_6.numbrid[2],
+                    parnu_2_7.numbrid[2]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_2_0.kuupaev,
+                    parnu_2_1.kuupaev,
+                    parnu_2_2.kuupaev,
+                    parnu_2_3.kuupaev,
+                    parnu_2_4.kuupaev,
+                    parnu_2_5.kuupaev,
+                    parnu_2_6.kuupaev,
+                    parnu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Pappel
+        $scope.Pappel_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Pappel'
+            },
+            series: [{
+                name: 'Pappel (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_2_0.numbrid[3],
+                    parnu_2_1.numbrid[3],
+                    parnu_2_2.numbrid[3],
+                    parnu_2_3.numbrid[3],
+                    parnu_2_4.numbrid[3],
+                    parnu_2_5.numbrid[3],
+                    parnu_2_6.numbrid[3],
+                    parnu_2_7.numbrid[3]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_2_0.kuupaev,
+                    parnu_2_1.kuupaev,
+                    parnu_2_2.kuupaev,
+                    parnu_2_3.kuupaev,
+                    parnu_2_4.kuupaev,
+                    parnu_2_5.kuupaev,
+                    parnu_2_6.kuupaev,
+                    parnu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Puju
+        $scope.Puju_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Puju'
+            },
+            series: [{
+                name: 'Puju (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_2_0.numbrid[4],
+                    parnu_2_1.numbrid[4],
+                    parnu_2_2.numbrid[4],
+                    parnu_2_3.numbrid[4],
+                    parnu_2_4.numbrid[4],
+                    parnu_2_5.numbrid[4],
+                    parnu_2_6.numbrid[4],
+                    parnu_2_7.numbrid[4]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_2_0.kuupaev,
+                    parnu_2_1.kuupaev,
+                    parnu_2_2.kuupaev,
+                    parnu_2_3.kuupaev,
+                    parnu_2_4.kuupaev,
+                    parnu_2_5.kuupaev,
+                    parnu_2_6.kuupaev,
+                    parnu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Saar
+        $scope.Saar_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Saar'
+            },
+            series: [{
+                name: 'Saar (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_2_0.numbrid[5],
+                    parnu_2_1.numbrid[5],
+                    parnu_2_2.numbrid[5],
+                    parnu_2_3.numbrid[5],
+                    parnu_2_4.numbrid[5],
+                    parnu_2_5.numbrid[5],
+                    parnu_2_6.numbrid[5],
+                    parnu_2_7.numbrid[5]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_2_0.kuupaev,
+                    parnu_2_1.kuupaev,
+                    parnu_2_2.kuupaev,
+                    parnu_2_3.kuupaev,
+                    parnu_2_4.kuupaev,
+                    parnu_2_5.kuupaev,
+                    parnu_2_6.kuupaev,
+                    parnu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Sarapuu
+        $scope.Sarapuu_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Sarapuu'
+            },
+            series: [{
+                name: 'Sarapuu (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_2_0.numbrid[6],
+                    parnu_2_1.numbrid[6],
+                    parnu_2_2.numbrid[6],
+                    parnu_2_3.numbrid[6],
+                    parnu_2_4.numbrid[6],
+                    parnu_2_5.numbrid[6],
+                    parnu_2_6.numbrid[6],
+                    parnu_2_7.numbrid[6]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_2_0.kuupaev,
+                    parnu_2_1.kuupaev,
+                    parnu_2_2.kuupaev,
+                    parnu_2_3.kuupaev,
+                    parnu_2_4.kuupaev,
+                    parnu_2_5.kuupaev,
+                    parnu_2_6.kuupaev,
+                    parnu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Tamm
+        $scope.Tamm_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Tamm'
+            },
+            series: [{
+                name: 'Tamm (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_2_0.numbrid[7],
+                    parnu_2_1.numbrid[7],
+                    parnu_2_2.numbrid[7],
+                    parnu_2_3.numbrid[7],
+                    parnu_2_4.numbrid[7],
+                    parnu_2_5.numbrid[7],
+                    parnu_2_6.numbrid[7],
+                    parnu_2_7.numbrid[7]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_2_0.kuupaev,
+                    parnu_2_1.kuupaev,
+                    parnu_2_2.kuupaev,
+                    parnu_2_3.kuupaev,
+                    parnu_2_4.kuupaev,
+                    parnu_2_5.kuupaev,
+                    parnu_2_6.kuupaev,
+                    parnu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Vaher
+        $scope.Vaher_prn = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Vaher'
+            },
+            series: [{
+                name: 'Vaher (tk/m3)',
+                color: '#ffc900',
+                showInLegend: false,
+                data: [
+                    parnu_2_0.numbrid[8],
+                    parnu_2_1.numbrid[8],
+                    parnu_2_2.numbrid[8],
+                    parnu_2_3.numbrid[8],
+                    parnu_2_4.numbrid[8],
+                    parnu_2_5.numbrid[8],
+                    parnu_2_6.numbrid[8],
+                    parnu_2_7.numbrid[8]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    parnu_2_0.kuupaev,
+                    parnu_2_1.kuupaev,
+                    parnu_2_2.kuupaev,
+                    parnu_2_3.kuupaev,
+                    parnu_2_4.kuupaev,
+                    parnu_2_5.kuupaev,
+                    parnu_2_6.kuupaev,
+                    parnu_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // PÄRNU CHARTS END
+        // PÄRNU CHARTS END
+
+        // JÕHVI CHARTS BEGIN
+        // JÕHVI CHARTS BEGIN
+
+        // Alternaria
+        $scope.Alternaria_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Alternaria'
+            },
+            series: [{
+                name: 'Alternaria (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_1_0.numbrid[1],
+                    johvi_1_1.numbrid[1],
+                    johvi_1_2.numbrid[1],
+                    johvi_1_3.numbrid[1],
+                    johvi_1_4.numbrid[1],
+                    johvi_1_5.numbrid[1],
+                    johvi_1_6.numbrid[1],
+                    johvi_1_7.numbrid[1]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_1_0.kuupaev,
+                    johvi_1_1.kuupaev,
+                    johvi_1_2.kuupaev,
+                    johvi_1_3.kuupaev,
+                    johvi_1_4.kuupaev,
+                    johvi_1_5.kuupaev,
+                    johvi_1_6.kuupaev,
+                    johvi_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // Cladosporium
+        $scope.Cladosporium_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5
+                }
+            },
+            title: {
+                text: 'Cladosporium'
+            },
+            series: [{
+                name: 'Cladosporium (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_1_0.numbrid[2],
+                    johvi_1_1.numbrid[2],
+                    johvi_1_2.numbrid[2],
+                    johvi_1_3.numbrid[2],
+                    johvi_1_4.numbrid[2],
+                    johvi_1_5.numbrid[2],
+                    johvi_1_6.numbrid[2],
+                    johvi_1_7.numbrid[2]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_1_0.kuupaev,
+                    johvi_1_1.kuupaev,
+                    johvi_1_2.kuupaev,
+                    johvi_1_3.kuupaev,
+                    johvi_1_4.kuupaev,
+                    johvi_1_5.kuupaev,
+                    johvi_1_6.kuupaev,
+                    johvi_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Jalakas
+        $scope.Jalakas_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Jalakas'
+            },
+            series: [{
+                name: 'Jalakas (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_1_0.numbrid[3],
+                    johvi_1_1.numbrid[3],
+                    johvi_1_2.numbrid[3],
+                    johvi_1_3.numbrid[3],
+                    johvi_1_4.numbrid[3],
+                    johvi_1_5.numbrid[3],
+                    johvi_1_6.numbrid[3],
+                    johvi_1_7.numbrid[3]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_1_0.kuupaev,
+                    johvi_1_1.kuupaev,
+                    johvi_1_2.kuupaev,
+                    johvi_1_3.kuupaev,
+                    johvi_1_4.kuupaev,
+                    johvi_1_5.kuupaev,
+                    johvi_1_6.kuupaev,
+                    johvi_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kadakas
+        $scope.Kadakas_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kadakas'
+            },
+            series: [{
+                name: 'Kadakas (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_1_0.numbrid[4],
+                    johvi_1_1.numbrid[4],
+                    johvi_1_2.numbrid[4],
+                    johvi_1_3.numbrid[4],
+                    johvi_1_4.numbrid[4],
+                    johvi_1_5.numbrid[4],
+                    johvi_1_6.numbrid[4],
+                    johvi_1_7.numbrid[4]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_1_0.kuupaev,
+                    johvi_1_1.kuupaev,
+                    johvi_1_2.kuupaev,
+                    johvi_1_3.kuupaev,
+                    johvi_1_4.kuupaev,
+                    johvi_1_5.kuupaev,
+                    johvi_1_6.kuupaev,
+                    johvi_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kask
+        $scope.Kask_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kask'
+            },
+            series: [{
+                name: 'Kask (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_1_0.numbrid[5],
+                    johvi_1_1.numbrid[5],
+                    johvi_1_2.numbrid[5],
+                    johvi_1_3.numbrid[5],
+                    johvi_1_4.numbrid[5],
+                    johvi_1_5.numbrid[5],
+                    johvi_1_6.numbrid[5],
+                    johvi_1_7.numbrid[5]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_1_0.kuupaev,
+                    johvi_1_1.kuupaev,
+                    johvi_1_2.kuupaev,
+                    johvi_1_3.kuupaev,
+                    johvi_1_4.kuupaev,
+                    johvi_1_5.kuupaev,
+                    johvi_1_6.kuupaev,
+                    johvi_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kõrrelised
+        $scope.Korrelised_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kõrrelised'
+            },
+            series: [{
+                name: 'Kõrrelised (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_1_0.numbrid[6],
+                    johvi_1_1.numbrid[6],
+                    johvi_1_2.numbrid[6],
+                    johvi_1_3.numbrid[6],
+                    johvi_1_4.numbrid[6],
+                    johvi_1_5.numbrid[6],
+                    johvi_1_6.numbrid[6],
+                    johvi_1_7.numbrid[6]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_1_0.kuupaev,
+                    johvi_1_1.kuupaev,
+                    johvi_1_2.kuupaev,
+                    johvi_1_3.kuupaev,
+                    johvi_1_4.kuupaev,
+                    johvi_1_5.kuupaev,
+                    johvi_1_6.kuupaev,
+                    johvi_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kuusk
+        $scope.Kuusk_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kuusk'
+            },
+            series: [{
+                name: 'Kuusk (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_1_0.numbrid[7],
+                    johvi_1_1.numbrid[7],
+                    johvi_1_2.numbrid[7],
+                    johvi_1_3.numbrid[7],
+                    johvi_1_4.numbrid[7],
+                    johvi_1_5.numbrid[7],
+                    johvi_1_6.numbrid[7],
+                    johvi_1_7.numbrid[7]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_1_0.kuupaev,
+                    johvi_1_1.kuupaev,
+                    johvi_1_2.kuupaev,
+                    johvi_1_3.kuupaev,
+                    johvi_1_4.kuupaev,
+                    johvi_1_5.kuupaev,
+                    johvi_1_6.kuupaev,
+                    johvi_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Lepp
+        $scope.Lepp_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Lepp'
+            },
+            series: [{
+                name: 'Lepp (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_1_0.numbrid[8],
+                    johvi_1_1.numbrid[8],
+                    johvi_1_2.numbrid[8],
+                    johvi_1_3.numbrid[8],
+                    johvi_1_4.numbrid[8],
+                    johvi_1_5.numbrid[8],
+                    johvi_1_6.numbrid[8],
+                    johvi_1_7.numbrid[8]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_1_0.kuupaev,
+                    johvi_1_1.kuupaev,
+                    johvi_1_2.kuupaev,
+                    johvi_1_3.kuupaev,
+                    johvi_1_4.kuupaev,
+                    johvi_1_5.kuupaev,
+                    johvi_1_6.kuupaev,
+                    johvi_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Mänd
+        $scope.Mand_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Mänd'
+            },
+            series: [{
+                name: 'Mänd (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_1_0.numbrid[9],
+                    johvi_1_1.numbrid[9],
+                    johvi_1_2.numbrid[9],
+                    johvi_1_3.numbrid[9],
+                    johvi_1_4.numbrid[9],
+                    johvi_1_5.numbrid[9],
+                    johvi_1_6.numbrid[9],
+                    johvi_1_7.numbrid[9]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_1_0.kuupaev,
+                    johvi_1_1.kuupaev,
+                    johvi_1_2.kuupaev,
+                    johvi_1_3.kuupaev,
+                    johvi_1_4.kuupaev,
+                    johvi_1_5.kuupaev,
+                    johvi_1_6.kuupaev,
+                    johvi_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Nõges
+        $scope.Noges_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Nõges'
+            },
+            series: [{
+                name: 'Nõges (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_2_0.numbrid[0],
+                    johvi_2_1.numbrid[0],
+                    johvi_2_2.numbrid[0],
+                    johvi_2_3.numbrid[0],
+                    johvi_2_4.numbrid[0],
+                    johvi_2_5.numbrid[0],
+                    johvi_2_6.numbrid[0],
+                    johvi_2_7.numbrid[0]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_2_0.kuupaev,
+                    johvi_2_1.kuupaev,
+                    johvi_2_2.kuupaev,
+                    johvi_2_3.kuupaev,
+                    johvi_2_4.kuupaev,
+                    johvi_2_5.kuupaev,
+                    johvi_2_6.kuupaev,
+                    johvi_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Oblikas
+        $scope.Oblikas_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Oblikas'
+            },
+            series: [{
+                name: 'Oblikas (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_2_0.numbrid[1],
+                    johvi_2_1.numbrid[1],
+                    johvi_2_2.numbrid[1],
+                    johvi_2_3.numbrid[1],
+                    johvi_2_4.numbrid[1],
+                    johvi_2_5.numbrid[1],
+                    johvi_2_6.numbrid[1],
+                    johvi_2_7.numbrid[1]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_2_0.kuupaev,
+                    johvi_2_1.kuupaev,
+                    johvi_2_2.kuupaev,
+                    johvi_2_3.kuupaev,
+                    johvi_2_4.kuupaev,
+                    johvi_2_5.kuupaev,
+                    johvi_2_6.kuupaev,
+                    johvi_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Paju
+        $scope.Paju_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Paju'
+            },
+            series: [{
+                name: 'Paju (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_2_0.numbrid[2],
+                    johvi_2_1.numbrid[2],
+                    johvi_2_2.numbrid[2],
+                    johvi_2_3.numbrid[2],
+                    johvi_2_4.numbrid[2],
+                    johvi_2_5.numbrid[2],
+                    johvi_2_6.numbrid[2],
+                    johvi_2_7.numbrid[2]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_2_0.kuupaev,
+                    johvi_2_1.kuupaev,
+                    johvi_2_2.kuupaev,
+                    johvi_2_3.kuupaev,
+                    johvi_2_4.kuupaev,
+                    johvi_2_5.kuupaev,
+                    johvi_2_6.kuupaev,
+                    johvi_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Pappel
+        $scope.Pappel_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Pappel'
+            },
+            series: [{
+                name: 'Pappel (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_2_0.numbrid[3],
+                    johvi_2_1.numbrid[3],
+                    johvi_2_2.numbrid[3],
+                    johvi_2_3.numbrid[3],
+                    johvi_2_4.numbrid[3],
+                    johvi_2_5.numbrid[3],
+                    johvi_2_6.numbrid[3],
+                    johvi_2_7.numbrid[3]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_2_0.kuupaev,
+                    johvi_2_1.kuupaev,
+                    johvi_2_2.kuupaev,
+                    johvi_2_3.kuupaev,
+                    johvi_2_4.kuupaev,
+                    johvi_2_5.kuupaev,
+                    johvi_2_6.kuupaev,
+                    johvi_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Puju
+        $scope.Puju_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Puju'
+            },
+            series: [{
+                name: 'Puju (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_2_0.numbrid[4],
+                    johvi_2_1.numbrid[4],
+                    johvi_2_2.numbrid[4],
+                    johvi_2_3.numbrid[4],
+                    johvi_2_4.numbrid[4],
+                    johvi_2_5.numbrid[4],
+                    johvi_2_6.numbrid[4],
+                    johvi_2_7.numbrid[4]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_2_0.kuupaev,
+                    johvi_2_1.kuupaev,
+                    johvi_2_2.kuupaev,
+                    johvi_2_3.kuupaev,
+                    johvi_2_4.kuupaev,
+                    johvi_2_5.kuupaev,
+                    johvi_2_6.kuupaev,
+                    johvi_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Saar
+        $scope.Saar_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Saar'
+            },
+            series: [{
+                name: 'Saar (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_2_0.numbrid[5],
+                    johvi_2_1.numbrid[5],
+                    johvi_2_2.numbrid[5],
+                    johvi_2_3.numbrid[5],
+                    johvi_2_4.numbrid[5],
+                    johvi_2_5.numbrid[5],
+                    johvi_2_6.numbrid[5],
+                    johvi_2_7.numbrid[5]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_2_0.kuupaev,
+                    johvi_2_1.kuupaev,
+                    johvi_2_2.kuupaev,
+                    johvi_2_3.kuupaev,
+                    johvi_2_4.kuupaev,
+                    johvi_2_5.kuupaev,
+                    johvi_2_6.kuupaev,
+                    johvi_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Sarapuu
+        $scope.Sarapuu_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Sarapuu'
+            },
+            series: [{
+                name: 'Sarapuu (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_2_0.numbrid[6],
+                    johvi_2_1.numbrid[6],
+                    johvi_2_2.numbrid[6],
+                    johvi_2_3.numbrid[6],
+                    johvi_2_4.numbrid[6],
+                    johvi_2_5.numbrid[6],
+                    johvi_2_6.numbrid[6],
+                    johvi_2_7.numbrid[6]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_2_0.kuupaev,
+                    johvi_2_1.kuupaev,
+                    johvi_2_2.kuupaev,
+                    johvi_2_3.kuupaev,
+                    johvi_2_4.kuupaev,
+                    johvi_2_5.kuupaev,
+                    johvi_2_6.kuupaev,
+                    johvi_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Tamm
+        $scope.Tamm_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Tamm'
+            },
+            series: [{
+                name: 'Tamm (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_2_0.numbrid[7],
+                    johvi_2_1.numbrid[7],
+                    johvi_2_2.numbrid[7],
+                    johvi_2_3.numbrid[7],
+                    johvi_2_4.numbrid[7],
+                    johvi_2_5.numbrid[7],
+                    johvi_2_6.numbrid[7],
+                    johvi_2_7.numbrid[7]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_2_0.kuupaev,
+                    johvi_2_1.kuupaev,
+                    johvi_2_2.kuupaev,
+                    johvi_2_3.kuupaev,
+                    johvi_2_4.kuupaev,
+                    johvi_2_5.kuupaev,
+                    johvi_2_6.kuupaev,
+                    johvi_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Vaher
+        $scope.Vaher_jhv = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Vaher'
+            },
+            series: [{
+                name: 'Vaher (tk/m3)',
+                color: '#886aea',
+                showInLegend: false,
+                data: [
+                    johvi_2_0.numbrid[8],
+                    johvi_2_1.numbrid[8],
+                    johvi_2_2.numbrid[8],
+                    johvi_2_3.numbrid[8],
+                    johvi_2_4.numbrid[8],
+                    johvi_2_5.numbrid[8],
+                    johvi_2_6.numbrid[8],
+                    johvi_2_7.numbrid[8]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    johvi_2_0.kuupaev,
+                    johvi_2_1.kuupaev,
+                    johvi_2_2.kuupaev,
+                    johvi_2_3.kuupaev,
+                    johvi_2_4.kuupaev,
+                    johvi_2_5.kuupaev,
+                    johvi_2_6.kuupaev,
+                    johvi_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // JÕHVI CHARTS END
+        // JÕHVI CHARTS END
+
+        // KURESSAARE CHARTS BEGIN
+        // KURESSAARE CHARTS BEGIN
+
+        // Alternaria
+        $scope.Alternaria_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Alternaria'
+            },
+            series: [{
+                name: 'Alternaria (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_1_0.numbrid[1],
+                    kuressaare_1_1.numbrid[1],
+                    kuressaare_1_2.numbrid[1],
+                    kuressaare_1_3.numbrid[1],
+                    kuressaare_1_4.numbrid[1],
+                    kuressaare_1_5.numbrid[1],
+                    kuressaare_1_6.numbrid[1],
+                    kuressaare_1_7.numbrid[1]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_1_0.kuupaev,
+                    kuressaare_1_1.kuupaev,
+                    kuressaare_1_2.kuupaev,
+                    kuressaare_1_3.kuupaev,
+                    kuressaare_1_4.kuupaev,
+                    kuressaare_1_5.kuupaev,
+                    kuressaare_1_6.kuupaev,
+                    kuressaare_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // Cladosporium
+        $scope.Cladosporium_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5
+                }
+            },
+            title: {
+                text: 'Cladosporium'
+            },
+            series: [{
+                name: 'Cladosporium (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_1_0.numbrid[2],
+                    kuressaare_1_1.numbrid[2],
+                    kuressaare_1_2.numbrid[2],
+                    kuressaare_1_3.numbrid[2],
+                    kuressaare_1_4.numbrid[2],
+                    kuressaare_1_5.numbrid[2],
+                    kuressaare_1_6.numbrid[2],
+                    kuressaare_1_7.numbrid[2]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_1_0.kuupaev,
+                    kuressaare_1_1.kuupaev,
+                    kuressaare_1_2.kuupaev,
+                    kuressaare_1_3.kuupaev,
+                    kuressaare_1_4.kuupaev,
+                    kuressaare_1_5.kuupaev,
+                    kuressaare_1_6.kuupaev,
+                    kuressaare_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Jalakas
+        $scope.Jalakas_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Jalakas'
+            },
+            series: [{
+                name: 'Jalakas (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_1_0.numbrid[3],
+                    kuressaare_1_1.numbrid[3],
+                    kuressaare_1_2.numbrid[3],
+                    kuressaare_1_3.numbrid[3],
+                    kuressaare_1_4.numbrid[3],
+                    kuressaare_1_5.numbrid[3],
+                    kuressaare_1_6.numbrid[3],
+                    kuressaare_1_7.numbrid[3]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_1_0.kuupaev,
+                    kuressaare_1_1.kuupaev,
+                    kuressaare_1_2.kuupaev,
+                    kuressaare_1_3.kuupaev,
+                    kuressaare_1_4.kuupaev,
+                    kuressaare_1_5.kuupaev,
+                    kuressaare_1_6.kuupaev,
+                    kuressaare_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kadakas
+        $scope.Kadakas_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kadakas'
+            },
+            series: [{
+                name: 'Kadakas (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_1_0.numbrid[4],
+                    kuressaare_1_1.numbrid[4],
+                    kuressaare_1_2.numbrid[4],
+                    kuressaare_1_3.numbrid[4],
+                    kuressaare_1_4.numbrid[4],
+                    kuressaare_1_5.numbrid[4],
+                    kuressaare_1_6.numbrid[4],
+                    kuressaare_1_7.numbrid[4]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_1_0.kuupaev,
+                    kuressaare_1_1.kuupaev,
+                    kuressaare_1_2.kuupaev,
+                    kuressaare_1_3.kuupaev,
+                    kuressaare_1_4.kuupaev,
+                    kuressaare_1_5.kuupaev,
+                    kuressaare_1_6.kuupaev,
+                    kuressaare_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kask
+        $scope.Kask_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kask'
+            },
+            series: [{
+                name: 'Kask (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_1_0.numbrid[5],
+                    kuressaare_1_1.numbrid[5],
+                    kuressaare_1_2.numbrid[5],
+                    kuressaare_1_3.numbrid[5],
+                    kuressaare_1_4.numbrid[5],
+                    kuressaare_1_5.numbrid[5],
+                    kuressaare_1_6.numbrid[5],
+                    kuressaare_1_7.numbrid[5]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_1_0.kuupaev,
+                    kuressaare_1_1.kuupaev,
+                    kuressaare_1_2.kuupaev,
+                    kuressaare_1_3.kuupaev,
+                    kuressaare_1_4.kuupaev,
+                    kuressaare_1_5.kuupaev,
+                    kuressaare_1_6.kuupaev,
+                    kuressaare_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kõrrelised
+        $scope.Korrelised_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kõrrelised'
+            },
+            series: [{
+                name: 'Kõrrelised (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_1_0.numbrid[6],
+                    kuressaare_1_1.numbrid[6],
+                    kuressaare_1_2.numbrid[6],
+                    kuressaare_1_3.numbrid[6],
+                    kuressaare_1_4.numbrid[6],
+                    kuressaare_1_5.numbrid[6],
+                    kuressaare_1_6.numbrid[6],
+                    kuressaare_1_7.numbrid[6]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_1_0.kuupaev,
+                    kuressaare_1_1.kuupaev,
+                    kuressaare_1_2.kuupaev,
+                    kuressaare_1_3.kuupaev,
+                    kuressaare_1_4.kuupaev,
+                    kuressaare_1_5.kuupaev,
+                    kuressaare_1_6.kuupaev,
+                    kuressaare_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Kuusk
+        $scope.Kuusk_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Kuusk'
+            },
+            series: [{
+                name: 'Kuusk (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_1_0.numbrid[7],
+                    kuressaare_1_1.numbrid[7],
+                    kuressaare_1_2.numbrid[7],
+                    kuressaare_1_3.numbrid[7],
+                    kuressaare_1_4.numbrid[7],
+                    kuressaare_1_5.numbrid[7],
+                    kuressaare_1_6.numbrid[7],
+                    kuressaare_1_7.numbrid[7]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_1_0.kuupaev,
+                    kuressaare_1_1.kuupaev,
+                    kuressaare_1_2.kuupaev,
+                    kuressaare_1_3.kuupaev,
+                    kuressaare_1_4.kuupaev,
+                    kuressaare_1_5.kuupaev,
+                    kuressaare_1_6.kuupaev,
+                    kuressaare_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Lepp
+        $scope.Lepp_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Lepp'
+            },
+            series: [{
+                name: 'Lepp (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_1_0.numbrid[8],
+                    kuressaare_1_1.numbrid[8],
+                    kuressaare_1_2.numbrid[8],
+                    kuressaare_1_3.numbrid[8],
+                    kuressaare_1_4.numbrid[8],
+                    kuressaare_1_5.numbrid[8],
+                    kuressaare_1_6.numbrid[8],
+                    kuressaare_1_7.numbrid[8]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_1_0.kuupaev,
+                    kuressaare_1_1.kuupaev,
+                    kuressaare_1_2.kuupaev,
+                    kuressaare_1_3.kuupaev,
+                    kuressaare_1_4.kuupaev,
+                    kuressaare_1_5.kuupaev,
+                    kuressaare_1_6.kuupaev,
+                    kuressaare_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Mänd
+        $scope.Mand_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Mänd'
+            },
+            series: [{
+                name: 'Mänd (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_1_0.numbrid[9],
+                    kuressaare_1_1.numbrid[9],
+                    kuressaare_1_2.numbrid[9],
+                    kuressaare_1_3.numbrid[9],
+                    kuressaare_1_4.numbrid[9],
+                    kuressaare_1_5.numbrid[9],
+                    kuressaare_1_6.numbrid[9],
+                    kuressaare_1_7.numbrid[9]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_1_0.kuupaev,
+                    kuressaare_1_1.kuupaev,
+                    kuressaare_1_2.kuupaev,
+                    kuressaare_1_3.kuupaev,
+                    kuressaare_1_4.kuupaev,
+                    kuressaare_1_5.kuupaev,
+                    kuressaare_1_6.kuupaev,
+                    kuressaare_1_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Nõges
+        $scope.Noges_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Nõges'
+            },
+            series: [{
+                name: 'Nõges (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_2_0.numbrid[0],
+                    kuressaare_2_1.numbrid[0],
+                    kuressaare_2_2.numbrid[0],
+                    kuressaare_2_3.numbrid[0],
+                    kuressaare_2_4.numbrid[0],
+                    kuressaare_2_5.numbrid[0],
+                    kuressaare_2_6.numbrid[0],
+                    kuressaare_2_7.numbrid[0]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_2_0.kuupaev,
+                    kuressaare_2_1.kuupaev,
+                    kuressaare_2_2.kuupaev,
+                    kuressaare_2_3.kuupaev,
+                    kuressaare_2_4.kuupaev,
+                    kuressaare_2_5.kuupaev,
+                    kuressaare_2_6.kuupaev,
+                    kuressaare_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Oblikas
+        $scope.Oblikas_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Oblikas'
+            },
+            series: [{
+                name: 'Oblikas (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_2_0.numbrid[1],
+                    kuressaare_2_1.numbrid[1],
+                    kuressaare_2_2.numbrid[1],
+                    kuressaare_2_3.numbrid[1],
+                    kuressaare_2_4.numbrid[1],
+                    kuressaare_2_5.numbrid[1],
+                    kuressaare_2_6.numbrid[1],
+                    kuressaare_2_7.numbrid[1]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_2_0.kuupaev,
+                    kuressaare_2_1.kuupaev,
+                    kuressaare_2_2.kuupaev,
+                    kuressaare_2_3.kuupaev,
+                    kuressaare_2_4.kuupaev,
+                    kuressaare_2_5.kuupaev,
+                    kuressaare_2_6.kuupaev,
+                    kuressaare_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Paju
+        $scope.Paju_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Paju'
+            },
+            series: [{
+                name: 'Paju (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_2_0.numbrid[2],
+                    kuressaare_2_1.numbrid[2],
+                    kuressaare_2_2.numbrid[2],
+                    kuressaare_2_3.numbrid[2],
+                    kuressaare_2_4.numbrid[2],
+                    kuressaare_2_5.numbrid[2],
+                    kuressaare_2_6.numbrid[2],
+                    kuressaare_2_7.numbrid[2]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_2_0.kuupaev,
+                    kuressaare_2_1.kuupaev,
+                    kuressaare_2_2.kuupaev,
+                    kuressaare_2_3.kuupaev,
+                    kuressaare_2_4.kuupaev,
+                    kuressaare_2_5.kuupaev,
+                    kuressaare_2_6.kuupaev,
+                    kuressaare_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Pappel
+        $scope.Pappel_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Pappel'
+            },
+            series: [{
+                name: 'Pappel (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_2_0.numbrid[3],
+                    kuressaare_2_1.numbrid[3],
+                    kuressaare_2_2.numbrid[3],
+                    kuressaare_2_3.numbrid[3],
+                    kuressaare_2_4.numbrid[3],
+                    kuressaare_2_5.numbrid[3],
+                    kuressaare_2_6.numbrid[3],
+                    kuressaare_2_7.numbrid[3]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_2_0.kuupaev,
+                    kuressaare_2_1.kuupaev,
+                    kuressaare_2_2.kuupaev,
+                    kuressaare_2_3.kuupaev,
+                    kuressaare_2_4.kuupaev,
+                    kuressaare_2_5.kuupaev,
+                    kuressaare_2_6.kuupaev,
+                    kuressaare_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Puju
+        $scope.Puju_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Puju'
+            },
+            series: [{
+                name: 'Puju (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_2_0.numbrid[4],
+                    kuressaare_2_1.numbrid[4],
+                    kuressaare_2_2.numbrid[4],
+                    kuressaare_2_3.numbrid[4],
+                    kuressaare_2_4.numbrid[4],
+                    kuressaare_2_5.numbrid[4],
+                    kuressaare_2_6.numbrid[4],
+                    kuressaare_2_7.numbrid[4]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_2_0.kuupaev,
+                    kuressaare_2_1.kuupaev,
+                    kuressaare_2_2.kuupaev,
+                    kuressaare_2_3.kuupaev,
+                    kuressaare_2_4.kuupaev,
+                    kuressaare_2_5.kuupaev,
+                    kuressaare_2_6.kuupaev,
+                    kuressaare_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Saar
+        $scope.Saar_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Saar'
+            },
+            series: [{
+                name: 'Saar (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_2_0.numbrid[5],
+                    kuressaare_2_1.numbrid[5],
+                    kuressaare_2_2.numbrid[5],
+                    kuressaare_2_3.numbrid[5],
+                    kuressaare_2_4.numbrid[5],
+                    kuressaare_2_5.numbrid[5],
+                    kuressaare_2_6.numbrid[5],
+                    kuressaare_2_7.numbrid[5]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_2_0.kuupaev,
+                    kuressaare_2_1.kuupaev,
+                    kuressaare_2_2.kuupaev,
+                    kuressaare_2_3.kuupaev,
+                    kuressaare_2_4.kuupaev,
+                    kuressaare_2_5.kuupaev,
+                    kuressaare_2_6.kuupaev,
+                    kuressaare_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Sarapuu
+        $scope.Sarapuu_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Sarapuu'
+            },
+            series: [{
+                name: 'Sarapuu (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_2_0.numbrid[6],
+                    kuressaare_2_1.numbrid[6],
+                    kuressaare_2_2.numbrid[6],
+                    kuressaare_2_3.numbrid[6],
+                    kuressaare_2_4.numbrid[6],
+                    kuressaare_2_5.numbrid[6],
+                    kuressaare_2_6.numbrid[6],
+                    kuressaare_2_7.numbrid[6]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_2_0.kuupaev,
+                    kuressaare_2_1.kuupaev,
+                    kuressaare_2_2.kuupaev,
+                    kuressaare_2_3.kuupaev,
+                    kuressaare_2_4.kuupaev,
+                    kuressaare_2_5.kuupaev,
+                    kuressaare_2_6.kuupaev,
+                    kuressaare_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Tamm
+        $scope.Tamm_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Tamm'
+            },
+            series: [{
+                name: 'Tamm (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_2_0.numbrid[7],
+                    kuressaare_2_1.numbrid[7],
+                    kuressaare_2_2.numbrid[7],
+                    kuressaare_2_3.numbrid[7],
+                    kuressaare_2_4.numbrid[7],
+                    kuressaare_2_5.numbrid[7],
+                    kuressaare_2_6.numbrid[7],
+                    kuressaare_2_7.numbrid[7]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_2_0.kuupaev,
+                    kuressaare_2_1.kuupaev,
+                    kuressaare_2_2.kuupaev,
+                    kuressaare_2_3.kuupaev,
+                    kuressaare_2_4.kuupaev,
+                    kuressaare_2_5.kuupaev,
+                    kuressaare_2_6.kuupaev,
+                    kuressaare_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // Vaher
+        $scope.Vaher_krs = {
+            options: {
+                chart: {
+                    type: 'areaspline',
+                    spacingRight: 5,
+                    spacingLeft: 5,
+                }
+            },
+            title: {
+                text: 'Vaher'
+            },
+            series: [{
+                name: 'Vaher (tk/m3)',
+                color: '#11c1f3',
+                showInLegend: false,
+                data: [
+                    kuressaare_2_0.numbrid[8],
+                    kuressaare_2_1.numbrid[8],
+                    kuressaare_2_2.numbrid[8],
+                    kuressaare_2_3.numbrid[8],
+                    kuressaare_2_4.numbrid[8],
+                    kuressaare_2_5.numbrid[8],
+                    kuressaare_2_6.numbrid[8],
+                    kuressaare_2_7.numbrid[8]
+                ]
+            }],
+            xAxis: {
+                categories: [
+                    kuressaare_2_0.kuupaev,
+                    kuressaare_2_1.kuupaev,
+                    kuressaare_2_2.kuupaev,
+                    kuressaare_2_3.kuupaev,
+                    kuressaare_2_4.kuupaev,
+                    kuressaare_2_5.kuupaev,
+                    kuressaare_2_6.kuupaev,
+                    kuressaare_2_7.kuupaev
+                ],
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // KURESSAARE CHARTS END
+        // KURESSAARE CHARTS END
+
+        // ALL CHARTS BEGIN
+        // ALL CHARTS BEGIN
+
+        // Alternaria
+        $scope.Alternaria_all = {
+            options: {
+                chart: {
+                    spacingRight: 5,
+                    spacingLeft: 5
+                },
+
+            },
+            title: {
+                text: 'Alternaria'
+            },
+            series: [
                 {
-                    "name": "Tallinn",
-                    "data": [
-                        tallinn_1_0.numbrid[2],
-                        tallinn_1_1.numbrid[2],
-                        tallinn_1_2.numbrid[2],
-                        tallinn_1_3.numbrid[2],
-                        tallinn_1_4.numbrid[2],
-                        tallinn_1_5.numbrid[2],
-                        tallinn_1_6.numbrid[2],
-                        tallinn_1_7.numbrid[2]
-
+                    type: 'column',
+                    name: 'TLN',
+                    color: '#FA8215',
+                    data: [
+                        tallinn_1_0.numbrid[1],
+                        tallinn_1_1.numbrid[1],
+                        tallinn_1_2.numbrid[1],
+                        tallinn_1_3.numbrid[1],
+                        tallinn_1_4.numbrid[1],
+                        tallinn_1_5.numbrid[1],
+                        tallinn_1_6.numbrid[1],
+                        tallinn_1_7.numbrid[1]
                     ]
                 },
                 {
-                    "name": "Tartu",
-                    "data": [
-                        tartu_1_0.numbrid[2],
-                        tartu_1_1.numbrid[2],
-                        tartu_1_2.numbrid[2],
-                        tartu_1_3.numbrid[2],
-                        tartu_1_4.numbrid[2],
-                        tartu_1_5.numbrid[2],
-                        tartu_1_6.numbrid[2],
-                        tartu_1_7.numbrid[2]
-
+                    type: 'column',
+                    name: 'TRT',
+                    color: '#33cd5f',
+                    data: [
+                        0,
+                        tartu_1_1.numbrid[1],
+                        tartu_1_2.numbrid[1],
+                        tartu_1_3.numbrid[1],
+                        tartu_1_4.numbrid[1],
+                        tartu_1_5.numbrid[1],
+                        tartu_1_6.numbrid[1],
+                        tartu_1_7.numbrid[1]
                     ]
                 },
                 {
-                    "name": "Pärnu",
-                    "data": [
-                        parnu_1_0.numbrid[2],
-                        parnu_1_1.numbrid[2],
-                        parnu_1_2.numbrid[2],
-                        parnu_1_3.numbrid[2],
-                        parnu_1_4.numbrid[2],
-                        parnu_1_5.numbrid[2],
-                        parnu_1_6.numbrid[2],
-                        parnu_1_7.numbrid[2]
-
+                    type: 'column',
+                    name: 'PRN',
+                    color: '#ffc900',
+                    data: [
+                        parnu_1_0.numbrid[1],
+                        parnu_1_1.numbrid[1],
+                        parnu_1_2.numbrid[1],
+                        parnu_1_3.numbrid[1],
+                        parnu_1_4.numbrid[1],
+                        parnu_1_5.numbrid[1],
+                        parnu_1_6.numbrid[1],
+                        parnu_1_7.numbrid[1]
                     ]
                 },
                 {
-                    "name": "Jõhvi",
-                    "data": [
-                        johvi_1_0.numbrid[2],
-                        johvi_1_1.numbrid[2],
-                        johvi_1_2.numbrid[2],
-                        johvi_1_3.numbrid[2],
-                        johvi_1_4.numbrid[2],
-                        johvi_1_5.numbrid[2],
-                        johvi_1_6.numbrid[2],
-                        johvi_1_7.numbrid[2]
-
+                    type: 'column',
+                    name: 'JHV',
+                    color: '#886aea',
+                    data: [
+                        johvi_1_0.numbrid[1],
+                        johvi_1_1.numbrid[1],
+                        johvi_1_2.numbrid[1],
+                        johvi_1_3.numbrid[1],
+                        johvi_1_4.numbrid[1],
+                        johvi_1_5.numbrid[1],
+                        johvi_1_6.numbrid[1],
+                        johvi_1_7.numbrid[1]
                     ]
                 },
                 {
-                    "name": "Kuressaare",
-                    "data": [
-                        kuressaare_1_0.numbrid[2],
-                        kuressaare_1_1.numbrid[2],
-                        kuressaare_1_2.numbrid[2],
-                        kuressaare_1_3.numbrid[2],
-                        kuressaare_1_4.numbrid[2],
-                        kuressaare_1_5.numbrid[2],
-                        kuressaare_1_6.numbrid[2],
-                        kuressaare_1_7.numbrid[2]
-
+                    type: 'column',
+                    name: 'KRS',
+                    borderWidth: 2,
+                    color: '#11c1f3',
+                    data: [
+                        kuressaare_1_0.numbrid[1],
+                        kuressaare_1_1.numbrid[1],
+                        kuressaare_1_2.numbrid[1],
+                        kuressaare_1_3.numbrid[1],
+                        kuressaare_1_4.numbrid[1],
+                        kuressaare_1_5.numbrid[1],
+                        kuressaare_1_6.numbrid[1],
+                        kuressaare_1_7.numbrid[1]
                     ]
                 },
             ],
-
             xAxis: {
                 categories: [
                     tartu_1_0.kuupaev,
@@ -733,18 +5318,958 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
                     tartu_1_7.kuupaev
                 ]
             },
-
-            "title": {
-                "text": "Lepp"
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
             },
-            "credits": {
-                "enabled": false
+            credits: {
+                enabled: false
             },
-            "loading": false,
-            "size": {}
-
+            loading: false
         }
 
+        // Cladosporium
+        $scope.Cladosporium_all = {
+            options: {
+                chart: {
+                    spacingRight: 5,
+                    spacingLeft: 5
+                },
+
+            },
+            title: {
+                text: 'Cladosporium'
+            },
+            series: [
+                {
+                    type: 'column',
+                    name: 'TLN',
+                    color: '#FA8215',
+                    data: [
+                        tallinn_1_0.numbrid[2],
+                        tallinn_1_1.numbrid[2],
+                        tallinn_1_2.numbrid[2],
+                        tallinn_1_3.numbrid[2],
+                        tallinn_1_4.numbrid[2],
+                        tallinn_1_5.numbrid[2],
+                        tallinn_1_6.numbrid[2],
+                        tallinn_1_7.numbrid[2]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'TRT',
+                    color: '#33cd5f',
+                    data: [
+                        0,
+                        tartu_1_1.numbrid[2],
+                        tartu_1_2.numbrid[2],
+                        tartu_1_3.numbrid[2],
+                        tartu_1_4.numbrid[2],
+                        tartu_1_5.numbrid[2],
+                        tartu_1_6.numbrid[2],
+                        tartu_1_7.numbrid[2]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'PRN',
+                    color: '#ffc900',
+                    data: [
+                        parnu_1_0.numbrid[2],
+                        parnu_1_1.numbrid[2],
+                        parnu_1_2.numbrid[2],
+                        parnu_1_3.numbrid[2],
+                        parnu_1_4.numbrid[2],
+                        parnu_1_5.numbrid[2],
+                        parnu_1_6.numbrid[2],
+                        parnu_1_7.numbrid[2]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'JHV',
+                    color: '#886aea',
+                    data: [
+                        johvi_1_0.numbrid[2],
+                        johvi_1_1.numbrid[2],
+                        johvi_1_2.numbrid[2],
+                        johvi_1_3.numbrid[2],
+                        johvi_1_4.numbrid[2],
+                        johvi_1_5.numbrid[2],
+                        johvi_1_6.numbrid[2],
+                        johvi_1_7.numbrid[2]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'KRS',
+                    borderWidth: 2,
+                    color: '#11c1f3',
+                    data: [
+                        kuressaare_1_0.numbrid[2],
+                        kuressaare_1_1.numbrid[2],
+                        kuressaare_1_2.numbrid[2],
+                        kuressaare_1_3.numbrid[2],
+                        kuressaare_1_4.numbrid[2],
+                        kuressaare_1_5.numbrid[2],
+                        kuressaare_1_6.numbrid[2],
+                        kuressaare_1_7.numbrid[2]
+                    ]
+                },
+            ],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // Jalakas
+        $scope.Jalakas_all = {
+            options: {
+                chart: {
+                    spacingRight: 5,
+                    spacingLeft: 5
+                },
+
+            },
+            title: {
+                text: 'Jalakas'
+            },
+            series: [
+                {
+                    type: 'column',
+                    name: 'TLN',
+                    color: '#FA8215',
+                    data: [
+                        tallinn_1_0.numbrid[3],
+                        tallinn_1_1.numbrid[3],
+                        tallinn_1_2.numbrid[3],
+                        tallinn_1_3.numbrid[3],
+                        tallinn_1_4.numbrid[3],
+                        tallinn_1_5.numbrid[3],
+                        tallinn_1_6.numbrid[3],
+                        tallinn_1_7.numbrid[3]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'TRT',
+                    color: '#33cd5f',
+                    data: [
+                        0,
+                        tartu_1_1.numbrid[3],
+                        tartu_1_2.numbrid[3],
+                        tartu_1_3.numbrid[3],
+                        tartu_1_4.numbrid[3],
+                        tartu_1_5.numbrid[3],
+                        tartu_1_6.numbrid[3],
+                        tartu_1_7.numbrid[3]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'PRN',
+                    color: '#ffc900',
+                    data: [
+                        parnu_1_0.numbrid[3],
+                        parnu_1_1.numbrid[3],
+                        parnu_1_2.numbrid[3],
+                        parnu_1_3.numbrid[3],
+                        parnu_1_4.numbrid[3],
+                        parnu_1_5.numbrid[3],
+                        parnu_1_6.numbrid[3],
+                        parnu_1_7.numbrid[3]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'JHV',
+                    color: '#886aea',
+                    data: [
+                        johvi_1_0.numbrid[3],
+                        johvi_1_1.numbrid[3],
+                        johvi_1_2.numbrid[3],
+                        johvi_1_3.numbrid[3],
+                        johvi_1_4.numbrid[3],
+                        johvi_1_5.numbrid[3],
+                        johvi_1_6.numbrid[3],
+                        johvi_1_7.numbrid[3]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'KRS',
+                    borderWidth: 2,
+                    color: '#11c1f3',
+                    data: [
+                        kuressaare_1_0.numbrid[3],
+                        kuressaare_1_1.numbrid[3],
+                        kuressaare_1_2.numbrid[3],
+                        kuressaare_1_3.numbrid[3],
+                        kuressaare_1_4.numbrid[3],
+                        kuressaare_1_5.numbrid[3],
+                        kuressaare_1_6.numbrid[3],
+                        kuressaare_1_7.numbrid[3]
+                    ]
+                },
+            ],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // Kadakas
+        $scope.Kadakas_all = {
+            options: {
+                chart: {
+                    spacingRight: 5,
+                    spacingLeft: 5
+                },
+
+            },
+            title: {
+                text: 'Kadakas'
+            },
+            series: [
+                {
+                    type: 'column',
+                    name: 'TLN',
+                    color: '#FA8215',
+                    data: [
+                        tallinn_1_0.numbrid[4],
+                        tallinn_1_1.numbrid[4],
+                        tallinn_1_2.numbrid[4],
+                        tallinn_1_3.numbrid[4],
+                        tallinn_1_4.numbrid[4],
+                        tallinn_1_5.numbrid[4],
+                        tallinn_1_6.numbrid[4],
+                        tallinn_1_7.numbrid[4]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'TRT',
+                    color: '#33cd5f',
+                    data: [
+                        0,
+                        tartu_1_1.numbrid[4],
+                        tartu_1_2.numbrid[4],
+                        tartu_1_3.numbrid[4],
+                        tartu_1_4.numbrid[4],
+                        tartu_1_5.numbrid[4],
+                        tartu_1_6.numbrid[4],
+                        tartu_1_7.numbrid[4]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'PRN',
+                    color: '#ffc900',
+                    data: [
+                        parnu_1_0.numbrid[4],
+                        parnu_1_1.numbrid[4],
+                        parnu_1_2.numbrid[4],
+                        parnu_1_3.numbrid[4],
+                        parnu_1_4.numbrid[4],
+                        parnu_1_5.numbrid[4],
+                        parnu_1_6.numbrid[4],
+                        parnu_1_7.numbrid[4]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'JHV',
+                    color: '#886aea',
+                    data: [
+                        johvi_1_0.numbrid[4],
+                        johvi_1_1.numbrid[4],
+                        johvi_1_2.numbrid[4],
+                        johvi_1_3.numbrid[4],
+                        johvi_1_4.numbrid[4],
+                        johvi_1_5.numbrid[4],
+                        johvi_1_6.numbrid[4],
+                        johvi_1_7.numbrid[4]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'KRS',
+                    borderWidth: 2,
+                    color: '#11c1f3',
+                    data: [
+                        kuressaare_1_0.numbrid[4],
+                        kuressaare_1_1.numbrid[4],
+                        kuressaare_1_2.numbrid[4],
+                        kuressaare_1_3.numbrid[4],
+                        kuressaare_1_4.numbrid[4],
+                        kuressaare_1_5.numbrid[4],
+                        kuressaare_1_6.numbrid[4],
+                        kuressaare_1_7.numbrid[4]
+                    ]
+                },
+            ],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // Kask
+        $scope.Kask_all = {
+            options: {
+                chart: {
+                    spacingRight: 5,
+                    spacingLeft: 5
+                },
+
+            },
+            title: {
+                text: 'Kask'
+            },
+            series: [
+                {
+                    type: 'column',
+                    name: 'TLN',
+                    color: '#FA8215',
+                    data: [
+                        tallinn_1_0.numbrid[5],
+                        tallinn_1_1.numbrid[5],
+                        tallinn_1_2.numbrid[5],
+                        tallinn_1_3.numbrid[5],
+                        tallinn_1_4.numbrid[5],
+                        tallinn_1_5.numbrid[5],
+                        tallinn_1_6.numbrid[5],
+                        tallinn_1_7.numbrid[5]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'TRT',
+                    color: '#33cd5f',
+                    data: [
+                        0,
+                        tartu_1_1.numbrid[5],
+                        tartu_1_2.numbrid[5],
+                        tartu_1_3.numbrid[5],
+                        tartu_1_4.numbrid[5],
+                        tartu_1_5.numbrid[5],
+                        tartu_1_6.numbrid[5],
+                        tartu_1_7.numbrid[5]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'PRN',
+                    color: '#ffc900',
+                    data: [
+                        parnu_1_0.numbrid[5],
+                        parnu_1_1.numbrid[5],
+                        parnu_1_2.numbrid[5],
+                        parnu_1_3.numbrid[5],
+                        parnu_1_4.numbrid[5],
+                        parnu_1_5.numbrid[5],
+                        parnu_1_6.numbrid[5],
+                        parnu_1_7.numbrid[5]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'JHV',
+                    color: '#886aea',
+                    data: [
+                        johvi_1_0.numbrid[5],
+                        johvi_1_1.numbrid[5],
+                        johvi_1_2.numbrid[5],
+                        johvi_1_3.numbrid[5],
+                        johvi_1_4.numbrid[5],
+                        johvi_1_5.numbrid[5],
+                        johvi_1_6.numbrid[5],
+                        johvi_1_7.numbrid[5]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'KRS',
+                    borderWidth: 2,
+                    color: '#11c1f3',
+                    data: [
+                        kuressaare_1_0.numbrid[5],
+                        kuressaare_1_1.numbrid[5],
+                        kuressaare_1_2.numbrid[5],
+                        kuressaare_1_3.numbrid[5],
+                        kuressaare_1_4.numbrid[5],
+                        kuressaare_1_5.numbrid[5],
+                        kuressaare_1_6.numbrid[5],
+                        kuressaare_1_7.numbrid[5]
+                    ]
+                },
+            ],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // Kõrrelised
+        $scope.Korrelised_all = {
+            options: {
+                chart: {
+                    spacingRight: 5,
+                    spacingLeft: 5
+                },
+
+            },
+            title: {
+                text: 'Kõrrelised'
+            },
+            series: [
+                {
+                    type: 'column',
+                    name: 'TLN',
+                    color: '#FA8215',
+                    data: [
+                        tallinn_1_0.numbrid[6],
+                        tallinn_1_1.numbrid[6],
+                        tallinn_1_2.numbrid[6],
+                        tallinn_1_3.numbrid[6],
+                        tallinn_1_4.numbrid[6],
+                        tallinn_1_5.numbrid[6],
+                        tallinn_1_6.numbrid[6],
+                        tallinn_1_7.numbrid[6]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'TRT',
+                    color: '#33cd5f',
+                    data: [
+                        0,
+                        tartu_1_1.numbrid[6],
+                        tartu_1_2.numbrid[6],
+                        tartu_1_3.numbrid[6],
+                        tartu_1_4.numbrid[6],
+                        tartu_1_5.numbrid[6],
+                        tartu_1_6.numbrid[6],
+                        tartu_1_7.numbrid[6]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'PRN',
+                    color: '#ffc900',
+                    data: [
+                        parnu_1_0.numbrid[6],
+                        parnu_1_1.numbrid[6],
+                        parnu_1_2.numbrid[6],
+                        parnu_1_3.numbrid[6],
+                        parnu_1_4.numbrid[6],
+                        parnu_1_5.numbrid[6],
+                        parnu_1_6.numbrid[6],
+                        parnu_1_7.numbrid[6]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'JHV',
+                    color: '#886aea',
+                    data: [
+                        johvi_1_0.numbrid[6],
+                        johvi_1_1.numbrid[6],
+                        johvi_1_2.numbrid[6],
+                        johvi_1_3.numbrid[6],
+                        johvi_1_4.numbrid[6],
+                        johvi_1_5.numbrid[6],
+                        johvi_1_6.numbrid[6],
+                        johvi_1_7.numbrid[6]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'KRS',
+                    borderWidth: 2,
+                    color: '#11c1f3',
+                    data: [
+                        kuressaare_1_0.numbrid[6],
+                        kuressaare_1_1.numbrid[6],
+                        kuressaare_1_2.numbrid[6],
+                        kuressaare_1_3.numbrid[6],
+                        kuressaare_1_4.numbrid[6],
+                        kuressaare_1_5.numbrid[6],
+                        kuressaare_1_6.numbrid[6],
+                        kuressaare_1_7.numbrid[6]
+                    ]
+                },
+            ],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // Kuusk
+        $scope.Kuusk_all = {
+            options: {
+                chart: {
+                    spacingRight: 5,
+                    spacingLeft: 5
+                },
+
+            },
+            title: {
+                text: 'Kuusk'
+            },
+            series: [
+                {
+                    type: 'column',
+                    name: 'TLN',
+                    color: '#FA8215',
+                    data: [
+                        tallinn_1_0.numbrid[7],
+                        tallinn_1_1.numbrid[7],
+                        tallinn_1_2.numbrid[7],
+                        tallinn_1_3.numbrid[7],
+                        tallinn_1_4.numbrid[7],
+                        tallinn_1_5.numbrid[7],
+                        tallinn_1_6.numbrid[7],
+                        tallinn_1_7.numbrid[7]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'TRT',
+                    color: '#33cd5f',
+                    data: [
+                        0,
+                        tartu_1_1.numbrid[7],
+                        tartu_1_2.numbrid[7],
+                        tartu_1_3.numbrid[7],
+                        tartu_1_4.numbrid[7],
+                        tartu_1_5.numbrid[7],
+                        tartu_1_6.numbrid[7],
+                        tartu_1_7.numbrid[7]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'PRN',
+                    color: '#ffc900',
+                    data: [
+                        parnu_1_0.numbrid[7],
+                        parnu_1_1.numbrid[7],
+                        parnu_1_2.numbrid[7],
+                        parnu_1_3.numbrid[7],
+                        parnu_1_4.numbrid[7],
+                        parnu_1_5.numbrid[7],
+                        parnu_1_6.numbrid[7],
+                        parnu_1_7.numbrid[7]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'JHV',
+                    color: '#886aea',
+                    data: [
+                        johvi_1_0.numbrid[7],
+                        johvi_1_1.numbrid[7],
+                        johvi_1_2.numbrid[7],
+                        johvi_1_3.numbrid[7],
+                        johvi_1_4.numbrid[7],
+                        johvi_1_5.numbrid[7],
+                        johvi_1_6.numbrid[7],
+                        johvi_1_7.numbrid[7]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'KRS',
+                    borderWidth: 2,
+                    color: '#11c1f3',
+                    data: [
+                        kuressaare_1_0.numbrid[7],
+                        kuressaare_1_1.numbrid[7],
+                        kuressaare_1_2.numbrid[7],
+                        kuressaare_1_3.numbrid[7],
+                        kuressaare_1_4.numbrid[7],
+                        kuressaare_1_5.numbrid[7],
+                        kuressaare_1_6.numbrid[7],
+                        kuressaare_1_7.numbrid[7]
+                    ]
+                },
+            ],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // Lepp
+        $scope.Lepp_all = {
+            options: {
+                chart: {
+                    spacingRight: 5,
+                    spacingLeft: 5
+                },
+
+            },
+            title: {
+                text: 'Lepp'
+            },
+            series: [
+                {
+                    type: 'column',
+                    name: 'TLN',
+                    color: '#FA8215',
+                    data: [
+                        tallinn_1_0.numbrid[8],
+                        tallinn_1_1.numbrid[8],
+                        tallinn_1_2.numbrid[8],
+                        tallinn_1_3.numbrid[8],
+                        tallinn_1_4.numbrid[8],
+                        tallinn_1_5.numbrid[8],
+                        tallinn_1_6.numbrid[8],
+                        tallinn_1_7.numbrid[8]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'TRT',
+                    color: '#33cd5f',
+                    data: [
+                        0,
+                        tartu_1_1.numbrid[8],
+                        tartu_1_2.numbrid[8],
+                        tartu_1_3.numbrid[8],
+                        tartu_1_4.numbrid[8],
+                        tartu_1_5.numbrid[8],
+                        tartu_1_6.numbrid[8],
+                        tartu_1_7.numbrid[8]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'PRN',
+                    color: '#ffc900',
+                    data: [
+                        parnu_1_0.numbrid[8],
+                        parnu_1_1.numbrid[8],
+                        parnu_1_2.numbrid[8],
+                        parnu_1_3.numbrid[8],
+                        parnu_1_4.numbrid[8],
+                        parnu_1_5.numbrid[8],
+                        parnu_1_6.numbrid[8],
+                        parnu_1_7.numbrid[8]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'JHV',
+                    color: '#886aea',
+                    data: [
+                        johvi_1_0.numbrid[8],
+                        johvi_1_1.numbrid[8],
+                        johvi_1_2.numbrid[8],
+                        johvi_1_3.numbrid[8],
+                        johvi_1_4.numbrid[8],
+                        johvi_1_5.numbrid[8],
+                        johvi_1_6.numbrid[8],
+                        johvi_1_7.numbrid[8]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'KRS',
+                    borderWidth: 2,
+                    color: '#11c1f3',
+                    data: [
+                        kuressaare_1_0.numbrid[8],
+                        kuressaare_1_1.numbrid[8],
+                        kuressaare_1_2.numbrid[8],
+                        kuressaare_1_3.numbrid[8],
+                        kuressaare_1_4.numbrid[8],
+                        kuressaare_1_5.numbrid[8],
+                        kuressaare_1_6.numbrid[8],
+                        kuressaare_1_7.numbrid[8]
+                    ]
+                },
+            ],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+
+        // Mänd
+        $scope.Mand_all = {
+            options: {
+                chart: {
+                    spacingRight: 5,
+                    spacingLeft: 5
+                },
+
+            },
+            title: {
+                text: 'Mänd'
+            },
+            series: [
+                {
+                    type: 'column',
+                    name: 'Tallinn',
+                    color: '#FA8215',
+                    data: [
+                        tallinn_1_0.numbrid[9],
+                        tallinn_1_1.numbrid[9],
+                        tallinn_1_2.numbrid[9],
+                        tallinn_1_3.numbrid[9],
+                        tallinn_1_4.numbrid[9],
+                        tallinn_1_5.numbrid[9],
+                        tallinn_1_6.numbrid[9],
+                        tallinn_1_7.numbrid[9]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'Tartu',
+                    color: '#33cd5f',
+                    data: [
+                        0,
+                        tartu_1_1.numbrid[9],
+                        tartu_1_2.numbrid[9],
+                        tartu_1_3.numbrid[9],
+                        tartu_1_4.numbrid[9],
+                        tartu_1_5.numbrid[9],
+                        tartu_1_6.numbrid[9],
+                        tartu_1_7.numbrid[9]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'Pärnu',
+                    color: '#ffc900',
+                    data: [
+                        parnu_1_0.numbrid[9],
+                        parnu_1_1.numbrid[9],
+                        parnu_1_2.numbrid[9],
+                        parnu_1_3.numbrid[9],
+                        parnu_1_4.numbrid[9],
+                        parnu_1_5.numbrid[9],
+                        parnu_1_6.numbrid[9],
+                        parnu_1_7.numbrid[9]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'Jõhvi',
+                    color: '#886aea',
+                    data: [
+                        johvi_1_0.numbrid[9],
+                        johvi_1_1.numbrid[9],
+                        johvi_1_2.numbrid[9],
+                        johvi_1_3.numbrid[9],
+                        johvi_1_4.numbrid[9],
+                        johvi_1_5.numbrid[9],
+                        johvi_1_6.numbrid[9],
+                        johvi_1_7.numbrid[9]
+                    ]
+                },
+                {
+                    type: 'column',
+                    name: 'Kuressaare',
+                    borderWidth: 2,
+                    color: '#11c1f3',
+                    data: [
+                        kuressaare_1_0.numbrid[9],
+                        kuressaare_1_1.numbrid[9],
+                        kuressaare_1_2.numbrid[9],
+                        kuressaare_1_3.numbrid[9],
+                        kuressaare_1_4.numbrid[9],
+                        kuressaare_1_5.numbrid[9],
+                        kuressaare_1_6.numbrid[9],
+                        kuressaare_1_7.numbrid[9]
+                    ]
+                },
+            ],
+            xAxis: {
+                categories: [
+                    tartu_1_0.kuupaev,
+                    tartu_1_1.kuupaev,
+                    tartu_1_2.kuupaev,
+                    tartu_1_3.kuupaev,
+                    tartu_1_4.kuupaev,
+                    tartu_1_5.kuupaev,
+                    tartu_1_6.kuupaev,
+                    tartu_1_7.kuupaev
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: false
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            loading: false
+        }
+        // ALL CHARTS END
+        // ALL CHARTS END
 
     })
 
@@ -911,7 +6436,6 @@ angular.module('controllers', ['highcharts-ng', 'ionic.contrib.ui.cards', "fireb
          }
          }
          }*/
-
 
         // Timmo näide
         /*for(var i=0;i<cardTypes.length;i++){
